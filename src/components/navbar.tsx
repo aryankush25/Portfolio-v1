@@ -7,16 +7,25 @@ import { RiCustomerService2Line } from "react-icons/ri";
 import { useEffect, useState } from "react";
 
 const navItems = [
-  { text: "Home", icon: <HiHome className="text-xl" /> },
-  { text: "About", icon: <HiUser className="text-xl" /> },
-  { text: "Contact", icon: <HiMail className="text-xl" /> },
-  { text: "Blog", icon: <MdArticle className="text-xl" /> },
-  { text: "Services", icon: <RiCustomerService2Line className="text-xl" /> },
+  { text: "Home", icon: <HiHome className="text-xl" />, href: "#home" },
+  { text: "About", icon: <HiUser className="text-xl" />, href: "#about" },
+  { text: "Contact", icon: <HiMail className="text-xl" />, href: "#contact" },
+  { text: "Blog", icon: <MdArticle className="text-xl" />, href: "#blog" },
+  {
+    text: "Services",
+    icon: <RiCustomerService2Line className="text-xl" />,
+    href: "#services",
+  },
 ];
 
 const containerVariants = {
   expanded: {
     width: "36rem",
+    height: "4rem",
+    transition: { duration: 0.3, ease: "easeOut" },
+  },
+  expandedNoText: {
+    width: "24rem",
     height: "4rem",
     transition: { duration: 0.3, ease: "easeOut" },
   },
@@ -47,23 +56,19 @@ const contentVariants = {
   },
 };
 
-const dotsVariants = {
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.2 },
-  },
-  hidden: {
-    opacity: 0,
-    scale: 0,
-    transition: { duration: 0.2 },
-  },
-};
-
 export default function Navbar() {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     return scrollY.onChange((latest) => {
@@ -72,63 +77,92 @@ export default function Navbar() {
   }, [scrollY]);
 
   const showContent = !isScrolled || isHovered;
+  const variant = showContent
+    ? !isScrolled
+      ? "expanded"
+      : "expandedNoText"
+    : "collapsed";
 
   return (
-    <div className="top-0 right-0 left-0 z-50 fixed">
-      <div className="mx-auto px-4 py-6 max-w-screen-xl">
-        <motion.div
-          className="flex justify-between items-center border-2 bg-black mx-auto px-8 border-black rounded-full overflow-hidden"
-          variants={containerVariants}
-          animate={showContent ? "expanded" : "collapsed"}
-          onHoverStart={() => setIsHovered(true)}
-          onHoverEnd={() => setIsHovered(false)}
-        >
-          <AnimatePresence mode="wait">
-            {showContent && (
-              <>
-                <motion.p
-                  className="font-semibold text-white"
-                  variants={contentVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="hidden"
-                  custom={-1}
-                >
-                  YASH
-                </motion.p>
-
-                <div className="flex items-center gap-8">
-                  {navItems.map(({ text, icon }, i) => (
-                    <motion.a
-                      key={text}
-                      href="#"
-                      className="text-white hover:text-gray-300 transition-colors"
-                      variants={contentVariants}
-                      initial="hidden"
-                      animate="visible"
-                      exit="hidden"
-                      custom={i}
-                    >
-                      {icon}
-                    </motion.a>
-                  ))}
-                </div>
-              </>
-            )}
-          </AnimatePresence>
-
+    <div>
+      <div className="mx-auto w-full max-w-screen-xl h-20" />
+      <AnimatePresence>
+        {isLoaded && (
           <motion.div
-            className="left-1/2 absolute flex gap-2 -translate-x-1/2"
-            variants={dotsVariants}
-            initial="hidden"
-            animate={!showContent ? "visible" : "hidden"}
+            className="top-0 right-0 left-0 z-50 fixed"
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            <div className="bg-white rounded-full w-1.5 h-1.5" />
-            <div className="bg-white rounded-full w-1.5 h-1.5" />
-            <div className="bg-white rounded-full w-1.5 h-1.5" />
+            <div className="mx-auto px-4 py-6 max-w-screen-xl">
+              <motion.div
+                className="relative flex items-center border-2 bg-gray-900 mx-auto border-black rounded-full overflow-hidden"
+                variants={containerVariants}
+                animate={variant}
+                onHoverStart={() => setIsHovered(true)}
+                onHoverEnd={() => setIsHovered(false)}
+              >
+                {/* Dots (shown when collapsed) */}
+                <motion.div
+                  className="absolute inset-0 flex justify-center items-center gap-2 pointer-events-none"
+                  animate={{ opacity: !showContent ? 1 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="bg-white rounded-full w-1.5 h-1.5" />
+                  <div className="bg-white rounded-full w-1.5 h-1.5" />
+                  <div className="bg-white rounded-full w-1.5 h-1.5" />
+                </motion.div>
+
+                {/* Content (shown when expanded) */}
+                <AnimatePresence mode="wait">
+                  {showContent && (
+                    <motion.div
+                      className="flex justify-between items-center px-8 w-full"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      {!isScrolled && (
+                        <motion.p
+                          className="font-semibold text-white"
+                          variants={contentVariants}
+                          initial="hidden"
+                          animate="visible"
+                          exit="hidden"
+                          custom={-1}
+                        >
+                          YASH
+                        </motion.p>
+                      )}
+
+                      <div
+                        className={`flex items-center gap-8 ${
+                          isScrolled ? "mx-auto" : ""
+                        }`}
+                      >
+                        {navItems.map(({ text, icon, href }, i) => (
+                          <motion.a
+                            key={text}
+                            href={href}
+                            className="relative z-10 text-white hover:text-gray-300 transition-colors"
+                            variants={contentVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="hidden"
+                            custom={i}
+                          >
+                            {icon}
+                          </motion.a>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            </div>
           </motion.div>
-        </motion.div>
-      </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
