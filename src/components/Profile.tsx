@@ -3,12 +3,7 @@
 import { CONTACT_LINKS } from "@/utils/constants";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  motion,
-  useAnimationFrame,
-  useMotionValue,
-  useTransform,
-} from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { RiTwitterXFill, RiLinkedinFill, RiGithubFill } from "react-icons/ri";
 import { useEffect, useRef } from "react";
 
@@ -19,7 +14,7 @@ const imageAnimation = {
     borderRadius: ["16px", "30px", "16px"],
     transition: {
       borderRadius: {
-        duration: 3,
+        duration: 5,
         repeat: Infinity,
         ease: "easeInOut",
       },
@@ -53,14 +48,15 @@ const socialIconVariants = {
   },
 };
 
-const shimmerEffect = {
-  hidden: { backgroundPosition: "200% 0" },
-  visible: {
-    backgroundPosition: "-200% 0",
+const glowAnimation = {
+  initial: { opacity: 0.4 },
+  animate: {
+    opacity: [0.4, 0.6, 0.4],
+    scale: [1, 1.1, 1],
     transition: {
       duration: 4,
       repeat: Infinity,
-      ease: "linear",
+      ease: "easeInOut",
     },
   },
 };
@@ -77,74 +73,6 @@ export default function Profile() {
     return () => clearInterval(interval);
   }, [progress]);
 
-  // Particle animation
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const particles = useRef<
-    Array<{
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      size: number;
-      color: string;
-    }>
-  >([]);
-
-  const colors = ["#60A5FA", "#818CF8", "#A78BFA", "#F472B6"];
-
-  useEffect(() => {
-    if (!canvasRef.current) return;
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    // Initialize particles
-    for (let i = 0; i < 30; i++) {
-      particles.current.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.8,
-        vy: (Math.random() - 0.5) * 0.8,
-        size: Math.random() * 3 + 1,
-        color: colors[Math.floor(Math.random() * colors.length)],
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useAnimationFrame((time) => {
-    if (!canvasRef.current || !profileRef.current) return;
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Update and draw particles
-    particles.current.forEach((particle) => {
-      particle.x += particle.vx;
-      particle.y += particle.vy;
-
-      // Bounce off edges
-      if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-      if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-
-      // Draw particle with glow effect
-      ctx.save();
-      ctx.fillStyle = particle.color;
-      ctx.shadowColor = particle.color;
-      ctx.shadowBlur = 10;
-      ctx.beginPath();
-      ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-
-      // Add slight movement based on time
-      particle.x += Math.sin(time * 0.001 + particle.y * 0.01) * 0.2;
-      particle.y += Math.cos(time * 0.001 + particle.x * 0.01) * 0.2;
-    });
-  });
-
   return (
     <motion.div
       ref={profileRef}
@@ -154,23 +82,6 @@ export default function Profile() {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
-        width={400}
-        height={800}
-      />
-
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
-        variants={shimmerEffect}
-        initial="hidden"
-        animate="visible"
-        style={{
-          backgroundSize: "200% 100%",
-        }}
-      />
-
       <div className="relative flex flex-col items-center gap-8 p-8">
         <motion.div
           className="relative w-[320px] h-[360px] group"
@@ -178,11 +89,29 @@ export default function Profile() {
           initial="initial"
           animate="animate"
         >
-          <motion.div className="absolute rounded-2xl" />
+          <motion.div
+            className="absolute -inset-4 bg-gradient-to-r from-blue-500/50 via-purple-500/50 to-pink-500/50 blur-2xl rounded-[30px]"
+            variants={glowAnimation}
+            initial="initial"
+            animate="animate"
+          />
+          <motion.div
+            className="absolute -inset-4 bg-gradient-to-r from-blue-600/50 via-purple-600/50 to-pink-600/50 blur-md rounded-[30px]"
+            animate={{
+              opacity: [0.3, 0.5, 0.3],
+              scale: [1, 1.05, 1],
+              transition: {
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.5,
+              },
+            }}
+          />
           <Image
             src="/images/profile.jpeg"
             alt="Yash Sharma"
-            className="relative rounded-2xl"
+            className="relative border-2 border-white/10 rounded-2xl"
             fill
             objectFit="cover"
           />
@@ -190,7 +119,6 @@ export default function Profile() {
 
         <div className="space-y-6 text-center">
           <h1 className="font-bold text-4xl text-white">YASH SHARMA</h1>
-
           <motion.p
             className="text-gray-300 text-xl"
             initial={{ opacity: 0, y: 20 }}
