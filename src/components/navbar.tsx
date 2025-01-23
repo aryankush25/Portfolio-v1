@@ -18,7 +18,7 @@ const containerVariants = {
   expanded: {
     width: "36rem",
     height: "4rem",
-    transition: { duration: 0.3, delay: 0.1, ease: "easeInOut" },
+    transition: { duration: 0.3, ease: "easeOut" },
   },
   collapsed: {
     width: "8rem",
@@ -30,28 +30,32 @@ const containerVariants = {
 const contentVariants = {
   visible: (i: number) => ({
     opacity: 1,
-    x: 0,
+    y: 0,
     transition: {
-      delay: i * 0.05,
-      duration: 0.2,
+      delay: 0.3 + i * 0.1,
+      type: "spring",
+      stiffness: 200,
+      damping: 20,
     },
   }),
-  hidden: (i: number) => ({
+  hidden: {
     opacity: 0,
-    x: i < 0 ? -20 : 20,
+    y: -20,
     transition: {
       duration: 0.2,
     },
-  }),
+  },
 };
 
 const dotsVariants = {
   visible: {
     opacity: 1,
-    transition: { delay: 0.2, duration: 0.2 },
+    scale: 1,
+    transition: { duration: 0.2 },
   },
   hidden: {
     opacity: 0,
+    scale: 0,
     transition: { duration: 0.2 },
   },
 };
@@ -79,7 +83,7 @@ export default function Navbar() {
           onHoverStart={() => setIsHovered(true)}
           onHoverEnd={() => setIsHovered(false)}
         >
-          <AnimatePresence>
+          <AnimatePresence mode="wait">
             {showContent && (
               <>
                 <motion.p
