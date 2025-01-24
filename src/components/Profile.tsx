@@ -12,7 +12,6 @@ const imageAnimation = {
   initial: { scale: 0.8, borderRadius: "16px" },
   animate: {
     scale: 1,
-    borderRadius: ["16px", "30px", "16px"],
     transition: {
       borderRadius: {
         duration: 3,
@@ -57,18 +56,6 @@ const shimmerEffect = {
       duration: 4,
       repeat: Infinity,
       ease: "linear",
-    },
-  },
-};
-
-const floatingAnimation = {
-  y: [-10, 10],
-  transition: {
-    y: {
-      duration: 2,
-      repeat: Infinity,
-      repeatType: "reverse",
-      ease: "easeInOut",
     },
   },
 };
@@ -272,10 +259,7 @@ export default function Profile() {
             animate="animate"
             whileHover={{ scale: 1.05 }}
           >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl"
-              animate={floatingAnimation}
-            />
+            <motion.div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl" />
             <Image
               src="/images/profile.jpeg"
               alt="Yash Sharma"
@@ -285,10 +269,7 @@ export default function Profile() {
             />
           </motion.div>
 
-          <motion.div
-            className="space-y-5 mt-10 text-center"
-            animate={floatingAnimation}
-          >
+          <motion.div className="space-y-5 mt-10 text-center">
             <motion.h1
               className="font-bold text-4xl text-white"
               whileHover={{ scale: 1.05 }}

@@ -8,7 +8,6 @@ import { RiContactsLine } from "react-icons/ri";
 import { useEffect, useState } from "react";
 
 const navItems = [
-  { text: "Home", icon: <HiHome className="text-lg" />, href: "#profile" },
   {
     text: "Projects",
     icon: <FaProjectDiagram className="text-lg" />,
@@ -72,7 +71,7 @@ const containerVariants = {
     transition: { duration: 0.3, ease: "easeOut" },
   },
   collapsed: {
-    width: "8rem",
+    width: "24rem",
     height: "3rem",
     transition: { duration: 0.3, delay: 0.2, ease: "easeInOut" },
   },
@@ -198,10 +197,9 @@ function MobileNav() {
 
 export default function Navbar() {
   const { scrollY } = useScroll();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [activeSection, setActiveSection] = useState("profile");
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -213,7 +211,7 @@ export default function Navbar() {
 
   useEffect(() => {
     return scrollY.onChange((latest) => {
-      setIsScrolled(latest > 50);
+      setShowScrollTop(latest > 200);
     });
   }, [scrollY]);
 
@@ -246,12 +244,12 @@ export default function Navbar() {
     }
   };
 
-  const showContent = !isScrolled || isHovered;
-  const variant = showContent
-    ? !isScrolled
-      ? "expanded"
-      : "expandedNoText"
-    : "collapsed";
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div className="">
@@ -260,6 +258,21 @@ export default function Navbar() {
         {isLoaded && (
           <>
             <MobileNav />
+            {/* Web Scroll to Top Button */}
+            <AnimatePresence>
+              {showScrollTop && (
+                <motion.button
+                  onClick={scrollToTop}
+                  className="right-8 bottom-8 z-50 fixed md:flex hidden bg-blue-500 hover:bg-blue-600 shadow-lg p-3 rounded-full text-white"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.5 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <HiHome className="text-xl" />
+                </motion.button>
+              )}
+            </AnimatePresence>
             <motion.div
               className="md:block top-0 right-0 left-0 z-50 fixed hidden"
               initial={{ y: -100, opacity: 0 }}
@@ -270,75 +283,39 @@ export default function Navbar() {
                 <motion.div
                   className="relative flex items-center border-2 border-gray-800 bg-black mx-auto rounded-full"
                   variants={containerVariants}
-                  animate={variant}
-                  onHoverStart={() => setIsHovered(true)}
-                  onHoverEnd={() => setIsHovered(false)}
+                  animate="collapsed"
                 >
-                  {/* Dots (shown when collapsed) */}
                   <motion.div
-                    className="absolute inset-0 flex justify-center items-center gap-2 pointer-events-none"
-                    animate={{ opacity: !showContent ? 1 : 0 }}
-                    transition={{ duration: 0.2 }}
+                    className="flex justify-center items-center px-8 w-full"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
                   >
-                    <div className="bg-white rounded-full w-1.5 h-1.5" />
-                    <div className="bg-white rounded-full w-1.5 h-1.5" />
-                    <div className="bg-white rounded-full w-1.5 h-1.5" />
-                  </motion.div>
-
-                  {/* Content (shown when expanded) */}
-                  <AnimatePresence mode="wait">
-                    {showContent && (
-                      <motion.div
-                        className="flex justify-between items-center px-8 w-full"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                      >
-                        {!isScrolled && (
-                          <motion.p
-                            className="font-semibold text-white"
-                            variants={contentVariants}
-                            initial="hidden"
-                            animate="visible"
-                            exit="hidden"
-                            custom={-1}
-                          >
-                            YASH SHARMA
-                          </motion.p>
-                        )}
-
-                        <div
-                          className={`flex items-center gap-8 ${
-                            isScrolled ? "mx-auto" : ""
+                    <div className="flex items-center gap-8">
+                      {navItems.map(({ text, icon, href }, i) => (
+                        <motion.button
+                          key={text}
+                          onClick={() => handleNavClick(href)}
+                          className={`group relative transition-all duration-200 ${
+                            activeSection === href.slice(1)
+                              ? "text-blue-400"
+                              : "text-white/80 hover:text-white"
                           }`}
+                          variants={contentVariants}
+                          initial="hidden"
+                          animate="visible"
+                          exit="hidden"
+                          custom={i}
                         >
-                          {navItems.map(({ text, icon, href }, i) => (
-                            <motion.button
-                              key={text}
-                              onClick={() => handleNavClick(href)}
-                              className={`group relative transition-all duration-200 ${
-                                activeSection === href.slice(1)
-                                  ? "text-blue-400"
-                                  : "text-white/80 hover:text-white"
-                              }`}
-                              variants={contentVariants}
-                              initial="hidden"
-                              animate="visible"
-                              exit="hidden"
-                              custom={i}
-                            >
-                              <div className="group-hover:scale-110 transform transition-transform duration-200">
-                                {icon}
-                              </div>
-                              <div className="top-0 left-1/2 absolute border-gray-700 bg-gray-900/95 opacity-0 group-hover:opacity-100 shadow-lg backdrop-blur-sm mb-2 px-2 py-1 border rounded text-white text-xs whitespace-nowrap transition-all -translate-x-1/2 -translate-y-full duration-200 pointer-events-none">
-                                {text}
-                              </div>
-                            </motion.button>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                          <div className="group-hover:scale-110 transform transition-transform duration-200">
+                            {icon}
+                          </div>
+                          <div className="top-0 left-1/2 absolute border-gray-700 bg-gray-900/95 opacity-0 group-hover:opacity-100 shadow-lg backdrop-blur-sm mb-2 px-2 py-1 border rounded text-white text-xs whitespace-nowrap transition-all -translate-x-1/2 -translate-y-full duration-200 pointer-events-none">
+                            {text}
+                          </div>
+                        </motion.button>
+                      ))}
+                    </div>
+                  </motion.div>
                 </motion.div>
               </div>
             </motion.div>

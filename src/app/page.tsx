@@ -26,7 +26,7 @@ export default function Home() {
 
   return (
     <div
-      className="relative bg-black min-h-screen"
+      className="relative min-h-screen"
       itemScope
       itemType="http://schema.org/Person"
     >
