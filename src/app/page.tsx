@@ -8,12 +8,13 @@ import DesignThoughts from "@/components/DesignThoughts";
 import ContactForm from "@/components/ContactForm";
 import PremiumTools from "@/components/PremiumTools";
 import Certifications from "@/components/Certifications";
+import Resume from "@/components/Resume";
 
 export default function Home() {
   return (
     <div className="relative bg-black min-h-screen">
       <div className="relative mx-auto px-4 py-8 max-w-screen-xl">
-        <div className="flex gap-24 mt-16">
+        <div className="flex gap-24 mt-8">
           <div id="profile" className="flex-shrink-0 w-[400px]">
             <Profile />
           </div>
@@ -28,6 +29,9 @@ export default function Home() {
             </div>
             <div id="tech-stack">
               <PremiumTools />
+            </div>
+            <div id="resume">
+              <Resume />
             </div>
             <div id="blog">
               <DesignThoughts />

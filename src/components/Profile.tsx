@@ -3,7 +3,7 @@
 import { CONTACT_LINKS } from "@/utils/constants";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { RiTwitterXFill, RiLinkedinFill, RiGithubFill } from "react-icons/ri";
 import { useEffect, useRef } from "react";
 import ParticleBackground from "./ParticleBackground";
@@ -61,28 +61,91 @@ const shimmerEffect = {
   },
 };
 
+const floatingAnimation = {
+  y: [-10, 10],
+  transition: {
+    y: {
+      duration: 2,
+      repeat: Infinity,
+      repeatType: "reverse",
+      ease: "easeInOut",
+    },
+  },
+};
+
+type CustomCSSProperties = {
+  "--mouse-x": string;
+  "--mouse-y": string;
+};
+
 export default function Profile() {
   const profileRef = useRef<HTMLDivElement>(null);
-  const progress = useMotionValue(0);
-  const borderRadius = useTransform(progress, [0, 1], [20, 60]);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const rotateX = useTransform(mouseY, [-300, 300], [10, -10]);
+  const rotateY = useTransform(mouseX, [-300, 300], [-10, 10]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = profileRef.current?.getBoundingClientRect();
+    if (rect) {
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      mouseX.set(x);
+      mouseY.set(y);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    animate(mouseX, 0, { duration: 0.5 });
+    animate(mouseY, 0, { duration: 0.5 });
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
-      progress.set(Math.random());
-    }, 2000);
+      if (profileRef.current) {
+        const hue = Math.random() * 360;
+        profileRef.current.style.setProperty(
+          "--gradient-color",
+          `hsl(${hue}, 70%, 50%)`
+        );
+      }
+    }, 3000);
     return () => clearInterval(interval);
-  }, [progress]);
+  }, []);
 
   return (
     <motion.div
       ref={profileRef}
-      className="top-48 fixed bg-gradient-to-br from-gray-900 to-black rounded-3xl w-[400px] h-[70dvh] overflow-hidden"
-      style={{ borderRadius }}
+      className="top-36 fixed bg-gradient-to-br from-gray-900 to-black rounded-3xl w-[400px] h-[700px] overflow-hidden"
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+        perspective: 1000,
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <ParticleBackground />
+
+      <motion.div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--gradient-color, #4f46e5) 0%, transparent 60%)",
+          opacity: 0.15,
+          mixBlendMode: "screen",
+        }}
+        animate={
+          {
+            "--mouse-x": mouseX.get() + "px",
+            "--mouse-y": mouseY.get() + "px",
+          } as CustomCSSProperties
+        }
+      />
 
       <motion.div
         className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
@@ -100,8 +163,12 @@ export default function Profile() {
           variants={imageAnimation}
           initial="initial"
           animate="animate"
+          whileHover={{ scale: 1.05 }}
         >
-          <motion.div className="absolute rounded-2xl" />
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl"
+            animate={floatingAnimation}
+          />
           <Image
             src="/images/profile.jpeg"
             alt="Yash Sharma"
@@ -111,8 +178,16 @@ export default function Profile() {
           />
         </motion.div>
 
-        <div className="space-y-6 text-center">
-          <h1 className="font-bold text-4xl text-white">YASH SHARMA</h1>
+        <motion.div
+          className="space-y-6 text-center"
+          animate={floatingAnimation}
+        >
+          <motion.h1
+            className="font-bold text-4xl text-white"
+            whileHover={{ scale: 1.05 }}
+          >
+            YASH SHARMA
+          </motion.h1>
 
           <motion.p
             className="text-gray-300 text-xl"
@@ -122,7 +197,7 @@ export default function Profile() {
           >
             A software engineer developed seamless user experiences.
           </motion.p>
-        </div>
+        </motion.div>
 
         <div className="flex gap-6">
           {[
