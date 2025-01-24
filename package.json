@@ -10,6 +10,7 @@
     "generate-icons": "node scripts/generate-icons.mjs"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.4.1",
     "motion": "^12.0.1",
     "next": "15.1.6",
     "react": "^19.0.0",
