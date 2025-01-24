@@ -30,8 +30,8 @@ export default function Home() {
       itemScope
       itemType="http://schema.org/Person"
     >
-      <div className="relative mx-auto px-4 py-8 max-w-screen-xl">
-        <div className={`flex  ${isMobile ? "flex-col" : "gap-24 mt-8"}`}>
+      <div className="relative mx-auto px-4 py-8 md:pt-0 max-w-screen-xl">
+        <div className={`flex  ${isMobile ? "flex-col" : "gap-24"}`}>
           <aside
             id="profile"
             className="md:flex-shrink-0 md:w-[400px]"
