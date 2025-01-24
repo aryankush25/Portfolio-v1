@@ -4,7 +4,7 @@ import { FiDownload } from "react-icons/fi";
 export default function Resume() {
   return (
     <motion.div
-      className="space-y-12 pt-32"
+      className="space-y-12 pt-10 md:pt-32"
       initial="initial"
       animate="animate"
       variants={{

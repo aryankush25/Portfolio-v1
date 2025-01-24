@@ -9,6 +9,7 @@ import ContactForm from "@/components/ContactForm";
 import PremiumTools from "@/components/PremiumTools";
 import Certifications from "@/components/Certifications";
 import Resume from "@/components/Resume";
+import GitHubContributions from "@/components/GitHubContributions";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -27,7 +28,6 @@ export default function Home() {
     return (
       <div className="relative bg-black px-4 py-8 min-h-screen">
         <div className="space-y-8 mx-auto max-w-lg">
-          <Profile />
           <div className="space-y-4 text-center">
             <h2 className="font-bold text-2xl text-white">
               Mobile View Under Construction
@@ -41,6 +41,8 @@ export default function Home() {
           </div>
           <div className="space-y-4">
             <Resume />
+
+            <GitHubContributions />
           </div>
         </div>
       </div>
@@ -74,6 +76,10 @@ export default function Home() {
 
             <section aria-label="Statistics">
               <Stats />
+            </section>
+
+            <section aria-label="GitHub Activity">
+              <GitHubContributions />
             </section>
 
             <section
