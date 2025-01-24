@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 
 const SITE_URL = "https://yashsharma.com";
+const PROFILE_DESCRIPTION =
+  "Software engineer specializing in React, Next.js, and modern web technologies. Experienced in building exceptional digital experiences with expertise in WebGL, TypeScript, and UI/UX design.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -8,8 +10,7 @@ export const metadata: Metadata = {
     default: "Yash Sharma | Software Engineer",
     template: "%s | Yash Sharma",
   },
-  description:
-    "Software engineer specializing in React, Next.js, and modern web technologies. View my work experience, projects, and technical expertise.",
+  description: PROFILE_DESCRIPTION,
   keywords: [
     "Yash Sharma",
     "Software Engineer",
@@ -22,8 +23,16 @@ export const metadata: Metadata = {
     "TypeScript",
     "WebGL",
     "Pixi.js",
+    "UI/UX Design",
+    "Web Development",
+    "Software Development",
   ],
-  authors: [{ name: "Yash Sharma", url: SITE_URL }],
+  authors: [
+    {
+      name: "Yash Sharma",
+      url: SITE_URL,
+    },
+  ],
   creator: "Yash Sharma",
   publisher: "Yash Sharma",
   robots: {
@@ -43,8 +52,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: "Yash Sharma Portfolio",
     title: "Yash Sharma | Software Engineer",
-    description:
-      "Software engineer specializing in building exceptional digital experiences. Expert in React, Next.js, and modern web technologies.",
+    description: PROFILE_DESCRIPTION,
     images: [
       {
         url: "/og-image.png",
@@ -57,10 +65,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Yash Sharma | Software Engineer",
-    description:
-      "Software engineer specializing in building exceptional digital experiences. Expert in React, Next.js, and modern web technologies.",
+    description: PROFILE_DESCRIPTION,
     creator: "@yash_sh0031",
     images: ["/og-image.png"],
+    site: "@yash_sh0031",
   },
   verification: {
     google: "your-google-verification-code",
