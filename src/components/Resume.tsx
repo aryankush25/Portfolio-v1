@@ -18,7 +18,7 @@ export default function Resume() {
       }}
     >
       <motion.h2
-        className="font-bold text-[120px] leading-none"
+        className="font-bold text-4xl md:text-[120px] leading-none"
         variants={{
           initial: { opacity: 0, y: 20 },
           animate: { opacity: 1, y: 0 },

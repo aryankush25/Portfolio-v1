@@ -9,8 +9,44 @@ import ContactForm from "@/components/ContactForm";
 import PremiumTools from "@/components/PremiumTools";
 import Certifications from "@/components/Certifications";
 import Resume from "@/components/Resume";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  if (isMobile) {
+    return (
+      <div className="relative bg-black px-4 py-8 min-h-screen">
+        <div className="space-y-8 mx-auto max-w-lg">
+          <Profile />
+          <div className="space-y-4 text-center">
+            <h2 className="font-bold text-2xl text-white">
+              Mobile View Under Construction
+            </h2>
+            <p className="text-gray-400">
+              The mobile version is being optimized for a better experience.
+            </p>
+            <p className="text-gray-400">
+              Please visit on a desktop for the full experience.
+            </p>
+          </div>
+          <div className="space-y-4">
+            <Resume />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       className="relative bg-black min-h-screen"

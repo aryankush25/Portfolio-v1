@@ -116,7 +116,7 @@ export default function Profile() {
   return (
     <motion.div
       ref={profileRef}
-      className="top-36 fixed bg-gradient-to-br from-gray-900 to-black rounded-3xl w-[400px] h-[700px] overflow-hidden"
+      className="md:block top-36 fixed hidden bg-gradient-to-br from-gray-900 to-black rounded-3xl w-[400px] h-[700px] overflow-hidden"
       style={{
         rotateX,
         rotateY,

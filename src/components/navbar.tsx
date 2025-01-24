@@ -133,7 +133,7 @@ export default function Navbar() {
     : "collapsed";
 
   return (
-    <div>
+    <div className="md:block hidden">
       <div className="mx-auto w-full max-w-screen-xl h-20" />
       <AnimatePresence>
         {isLoaded && (
