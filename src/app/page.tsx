@@ -27,7 +27,18 @@ export default function Home() {
   if (isMobile) {
     return (
       <div className="relative bg-black px-4 py-8 min-h-screen">
-        <div className="space-y-8 mx-auto max-w-lg">
+        <Profile />
+        <Stats />
+        <GitHubContributions />
+        <RecentProjects />
+        <Experience />
+        <PremiumTools />
+        <Resume />
+        <DesignThoughts />
+        <ContactForm />
+        <Certifications />
+
+        {/* <div className="space-y-8 mx-auto max-w-lg">
           <div className="space-y-4 text-center">
             <h2 className="font-bold text-2xl text-white">
               Mobile View Under Construction
@@ -44,7 +55,7 @@ export default function Home() {
 
             <GitHubContributions />
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

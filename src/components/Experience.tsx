@@ -53,24 +53,26 @@ const Experience = () => {
 
   return (
     <motion.div
-      className="relative space-y-8 pt-24"
+      className="relative space-y-6 md:space-y-8 px-4 md:px-0 pt-16 md:pt-24"
       variants={containerVariants}
       initial="initial"
       animate="animate"
     >
       <motion.div variants={titleVariants}>
-        <div className="flex items-center gap-3 mb-2">
-          <HiOutlineBriefcase className="w-6 h-6 text-white" />
-          <h3 className="font-medium text-white text-xl">Career Journey</h3>
+        <div className="flex items-center gap-2 md:gap-3 mb-2">
+          <HiOutlineBriefcase className="w-5 md:w-6 h-5 md:h-6 text-white" />
+          <h3 className="font-medium text-lg text-white md:text-xl">
+            Career Journey
+          </h3>
         </div>
-        <motion.h2 className="font-bold text-[90px] leading-none">
+        <motion.h2 className="font-bold text-4xl md:text-[90px] leading-none">
           <span className="text-white">WORK</span>{" "}
           <span className="text-gray-600">EXPERIENCE</span>
         </motion.h2>
       </motion.div>
 
       <motion.div
-        className="space-y-6"
+        className="space-y-4 md:space-y-6"
         variants={{
           initial: { opacity: 0 },
           animate: {
