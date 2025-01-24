@@ -1,11 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { FiUser, FiMail, FiMessageSquare, FiBriefcase } from "react-icons/fi";
+import { FaTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa";
 
 export default function ContactForm() {
   return (
     <motion.div
-      className="space-y-12 pt-32"
+      className="space-y-12 px-4 md:px-6 pt-32"
       initial="initial"
       animate="animate"
       variants={{
@@ -13,79 +15,122 @@ export default function ContactForm() {
         animate: {
           opacity: 1,
           transition: {
-            staggerChildren: 0.1,
+            staggerChildren: 0.15,
           },
         },
       }}
     >
       <motion.h2
-        className="font-bold text-[120px] leading-none"
+        className="font-bold text-[72px] text-white md:text-[120px] leading-none"
         variants={{
           initial: { opacity: 0, y: 20 },
           animate: { opacity: 1, y: 0 },
         }}
       >
-        <span className="text-white">LET&apos;S WORK</span>{" "}
-        <span className="text-gray-600">TOGETHER</span>
+        LET&apos;S WORK TOGETHER
       </motion.h2>
 
       <motion.form
-        className="space-y-6"
+        className="space-y-8 max-w-4xl"
         variants={{
           initial: { opacity: 0, y: 20 },
           animate: { opacity: 1, y: 0 },
         }}
       >
-        <div className="gap-6 grid grid-cols-2">
+        <div className="gap-6 grid grid-cols-1 md:grid-cols-2">
           <div className="space-y-2">
-            <label className="text-gray-400 text-sm">Name</label>
+            <label className="flex items-center gap-2 font-medium text-indigo-300/70 text-sm">
+              <FiUser className="w-4 h-4" /> Name
+            </label>
+            <div className="relative group">
+              <input
+                type="text"
+                className="border-zinc-800 focus:border-indigo-500/30 bg-zinc-900/50 px-4 py-4 pl-12 border rounded-xl w-full text-zinc-100 placeholder:text-zinc-600 transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-indigo-500/20"
+                placeholder="John Doe"
+              />
+              <FiUser className="group-focus-within:text-indigo-400 top-1/2 left-4 absolute w-4 h-4 text-zinc-600 transition-colors -translate-y-1/2 duration-300" />
+            </div>
+          </div>
+          <div className="space-y-2">
+            <label className="flex items-center gap-2 font-medium text-indigo-300/70 text-sm">
+              <FiMail className="w-4 h-4" /> Email
+            </label>
+            <div className="relative group">
+              <input
+                type="email"
+                className="border-zinc-800 focus:border-indigo-500/30 bg-zinc-900/50 px-4 py-4 pl-12 border rounded-xl w-full text-zinc-100 placeholder:text-zinc-600 transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-indigo-500/20"
+                placeholder="john@example.com"
+              />
+              <FiMail className="group-focus-within:text-indigo-400 top-1/2 left-4 absolute w-4 h-4 text-zinc-600 transition-colors -translate-y-1/2 duration-300" />
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <label className="flex items-center gap-2 font-medium text-indigo-300/70 text-sm">
+            <FiBriefcase className="w-4 h-4" /> Subject
+          </label>
+          <div className="relative group">
             <input
               type="text"
-              className="border-white/5 focus:border-white/20 bg-black/20 p-4 border rounded-xl w-full text-white transition-colors focus:outline-none"
-              placeholder="Your name"
+              className="border-zinc-800 focus:border-indigo-500/30 bg-zinc-900/50 px-4 py-4 pl-12 border rounded-xl w-full text-zinc-100 placeholder:text-zinc-600 transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-indigo-500/20"
+              placeholder="Tell me about your project"
             />
-          </div>
-          <div className="space-y-2">
-            <label className="text-gray-400 text-sm">Email</label>
-            <input
-              type="email"
-              className="border-white/5 focus:border-white/20 bg-black/20 p-4 border rounded-xl w-full text-white transition-colors focus:outline-none"
-              placeholder="Your email"
-            />
+            <FiBriefcase className="group-focus-within:text-indigo-400 top-1/2 left-4 absolute w-4 h-4 text-zinc-600 transition-colors -translate-y-1/2 duration-300" />
           </div>
         </div>
 
         <div className="space-y-2">
-          <label className="text-gray-400 text-sm">Subject</label>
-          <input
-            type="text"
-            className="border-white/5 focus:border-white/20 bg-black/20 p-4 border rounded-xl w-full text-white transition-colors focus:outline-none"
-            placeholder="Project subject"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <label className="text-gray-400 text-sm">Message</label>
-          <textarea
-            className="border-white/5 focus:border-white/20 bg-black/20 p-4 border rounded-xl w-full h-40 text-white transition-colors focus:outline-none resize-none"
-            placeholder="Write your message here..."
-          />
+          <label className="flex items-center gap-2 font-medium text-indigo-300/70 text-sm">
+            <FiMessageSquare className="w-4 h-4" /> Message
+          </label>
+          <div className="relative group">
+            <textarea
+              className="border-zinc-800 focus:border-indigo-500/30 bg-zinc-900/50 px-4 py-4 pl-12 border rounded-xl w-full h-40 text-zinc-100 placeholder:text-zinc-600 transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-indigo-500/20 resize-none"
+              placeholder="Share the details of your project, timeline, and any specific requirements..."
+            />
+            <FiMessageSquare className="group-focus-within:text-indigo-400 top-6 left-4 absolute w-4 h-4 text-zinc-600 transition-colors duration-300" />
+          </div>
         </div>
 
         <motion.button
-          className="bg-orange-500 hover:bg-orange-600 py-4 rounded-xl w-full font-semibold text-white transition-colors"
+          className="bg-gradient-to-r from-indigo-500 hover:from-indigo-600 to-purple-500 hover:to-purple-600 shadow-indigo-500/10 shadow-lg px-6 py-4 rounded-xl w-full font-semibold text-zinc-100 transition-all duration-300"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          Submit
+          Send Message
         </motion.button>
 
-        <div className="flex justify-between items-center text-gray-500 text-sm">
-          <p>Made by Yash</p>
-          <div className="flex gap-2">
-            <div className="bg-[#1DA1F2] rounded-full w-6 h-6" />
-            <div className="bg-[#0077B5] rounded-full w-6 h-6" />
-            <div className="bg-[#333333] rounded-full w-6 h-6" />
+        <div className="flex sm:flex-row flex-col justify-between items-center gap-4 pt-4 text-sm text-zinc-500">
+          <p className="font-medium">Made with 💜 by Yash</p>
+          <div className="flex gap-4">
+            <motion.a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              className="bg-zinc-800/50 hover:bg-zinc-800 p-2 rounded-full transition-all duration-300"
+            >
+              <FaTwitter className="w-5 h-5 text-zinc-400" />
+            </motion.a>
+            <motion.a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              className="bg-zinc-800/50 hover:bg-zinc-800 p-2 rounded-full transition-all duration-300"
+            >
+              <FaLinkedinIn className="w-5 h-5 text-zinc-400" />
+            </motion.a>
+            <motion.a
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.1 }}
+              className="bg-zinc-800/50 hover:bg-zinc-800 p-2 rounded-full transition-all duration-300"
+            >
+              <FaGithub className="w-5 h-5 text-zinc-400" />
+            </motion.a>
           </div>
         </div>
       </motion.form>

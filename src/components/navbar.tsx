@@ -8,31 +8,31 @@ import { RiContactsLine } from "react-icons/ri";
 import { useEffect, useState } from "react";
 
 const navItems = [
-  { text: "Home", icon: <HiHome className="text-xl" />, href: "#profile" },
+  { text: "Home", icon: <HiHome className="text-lg" />, href: "#profile" },
   {
     text: "Projects",
-    icon: <FaProjectDiagram className="text-xl" />,
+    icon: <FaProjectDiagram className="text-lg" />,
     href: "#projects",
   },
   {
     text: "Experience",
-    icon: <MdWork className="text-xl" />,
+    icon: <MdWork className="text-lg" />,
     href: "#experience",
   },
   {
     text: "Tech Stack",
-    icon: <FaTools className="text-xl" />,
+    icon: <FaTools className="text-lg" />,
     href: "#tech-stack",
   },
-  { text: "Blog", icon: <MdArticle className="text-xl" />, href: "#blog" },
+  { text: "Blog", icon: <MdArticle className="text-lg" />, href: "#blog" },
   {
     text: "Contact",
-    icon: <RiContactsLine className="text-xl" />,
+    icon: <RiContactsLine className="text-lg" />,
     href: "#contact",
   },
   {
     text: "Certifications",
-    icon: <FaCertificate className="text-xl" />,
+    icon: <FaCertificate className="text-lg" />,
     href: "#certifications",
   },
 ];
@@ -145,7 +145,7 @@ export default function Navbar() {
           >
             <div className="mx-auto px-4 py-6 max-w-screen-xl">
               <motion.div
-                className="relative flex items-center border-2 border-gray-800 bg-black mx-auto rounded-full overflow-hidden"
+                className="relative flex items-center border-2 border-gray-800 bg-black mx-auto rounded-full"
                 variants={containerVariants}
                 animate={variant}
                 onHoverStart={() => setIsHovered(true)}
@@ -193,10 +193,10 @@ export default function Navbar() {
                           <motion.button
                             key={text}
                             onClick={() => handleNavClick(href)}
-                            className={`relative z-10 transition-colors ${
+                            className={`group relative transition-all duration-200 ${
                               activeSection === href.slice(1)
                                 ? "text-blue-400"
-                                : "text-white hover:text-gray-300"
+                                : "text-white/80 hover:text-white"
                             }`}
                             variants={contentVariants}
                             initial="hidden"
@@ -204,7 +204,12 @@ export default function Navbar() {
                             exit="hidden"
                             custom={i}
                           >
-                            {icon}
+                            <div className="group-hover:scale-110 transform transition-transform duration-200">
+                              {icon}
+                            </div>
+                            <div className="top-0 left-1/2 absolute border-gray-700 bg-gray-900/95 opacity-0 group-hover:opacity-100 shadow-lg backdrop-blur-sm mb-2 px-2 py-1 border rounded text-white text-xs whitespace-nowrap transition-all -translate-x-1/2 -translate-y-full duration-200 pointer-events-none">
+                              {text}
+                            </div>
                           </motion.button>
                         ))}
                       </div>
