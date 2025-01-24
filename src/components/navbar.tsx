@@ -1,20 +1,39 @@
 "use client";
 
 import { motion, useScroll, AnimatePresence } from "framer-motion";
-import { HiHome, HiUser, HiMail } from "react-icons/hi";
-import { MdArticle } from "react-icons/md";
-import { RiCustomerService2Line } from "react-icons/ri";
+import { HiHome } from "react-icons/hi";
+import { MdWork, MdArticle } from "react-icons/md";
+import { FaProjectDiagram, FaTools, FaCertificate } from "react-icons/fa";
+import { RiContactsLine } from "react-icons/ri";
 import { useEffect, useState } from "react";
 
 const navItems = [
-  { text: "Home", icon: <HiHome className="text-xl" />, href: "#home" },
-  { text: "About", icon: <HiUser className="text-xl" />, href: "#about" },
-  { text: "Contact", icon: <HiMail className="text-xl" />, href: "#contact" },
+  { text: "Home", icon: <HiHome className="text-xl" />, href: "#profile" },
+  {
+    text: "Projects",
+    icon: <FaProjectDiagram className="text-xl" />,
+    href: "#projects",
+  },
+  {
+    text: "Experience",
+    icon: <MdWork className="text-xl" />,
+    href: "#experience",
+  },
+  {
+    text: "Tech Stack",
+    icon: <FaTools className="text-xl" />,
+    href: "#tech-stack",
+  },
   { text: "Blog", icon: <MdArticle className="text-xl" />, href: "#blog" },
   {
-    text: "Services",
-    icon: <RiCustomerService2Line className="text-xl" />,
-    href: "#services",
+    text: "Contact",
+    icon: <RiContactsLine className="text-xl" />,
+    href: "#contact",
+  },
+  {
+    text: "Certifications",
+    icon: <FaCertificate className="text-xl" />,
+    href: "#certifications",
   },
 ];
 
@@ -61,6 +80,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [activeSection, setActiveSection] = useState("profile");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -75,6 +95,35 @@ export default function Navbar() {
       setIsScrolled(latest > 50);
     });
   }, [scrollY]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navItems.map((item) => ({
+        id: item.href.slice(1),
+        element: document.getElementById(item.href.slice(1)),
+      }));
+
+      const currentSection = sections.find((section) => {
+        if (!section.element) return false;
+        const rect = section.element.getBoundingClientRect();
+        return rect.top <= 100 && rect.bottom >= 100;
+      });
+
+      if (currentSection) {
+        setActiveSection(currentSection.id);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleNavClick = (href: string) => {
+    const element = document.getElementById(href.slice(1));
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   const showContent = !isScrolled || isHovered;
   const variant = showContent
@@ -131,7 +180,7 @@ export default function Navbar() {
                           exit="hidden"
                           custom={-1}
                         >
-                          YASH
+                          YASH SHARMA
                         </motion.p>
                       )}
 
@@ -141,10 +190,14 @@ export default function Navbar() {
                         }`}
                       >
                         {navItems.map(({ text, icon, href }, i) => (
-                          <motion.a
+                          <motion.button
                             key={text}
-                            href={href}
-                            className="relative z-10 text-white hover:text-gray-300 transition-colors"
+                            onClick={() => handleNavClick(href)}
+                            className={`relative z-10 transition-colors ${
+                              activeSection === href.slice(1)
+                                ? "text-blue-400"
+                                : "text-white hover:text-gray-300"
+                            }`}
                             variants={contentVariants}
                             initial="hidden"
                             animate="visible"
@@ -152,7 +205,7 @@ export default function Navbar() {
                             custom={i}
                           >
                             {icon}
-                          </motion.a>
+                          </motion.button>
                         ))}
                       </div>
                     </motion.div>

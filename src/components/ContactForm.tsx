@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function ContactForm() {
   return (
     <motion.div
-      className="space-y-12"
+      className="space-y-12 pt-32"
       initial="initial"
       animate="animate"
       variants={{
