@@ -80,58 +80,106 @@ type CustomCSSProperties = {
 
 function MobileProfile() {
   return (
-    <div
+    <motion.div
       id="profile"
-      className="flex flex-col md:hidden bg-gradient-to-br from-gray-900 to-black mx-4 mt-4 rounded-2xl overflow-hidden"
+      className="flex flex-col md:hidden px-4 w-full"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
     >
-      <div className="relative flex flex-col p-6">
-        <div className="flex items-center gap-5">
-          {/* Profile Image */}
-          <div className="relative w-24 h-24 shrink-0">
-            <Image
-              src="/images/profile.jpeg"
-              alt="Yash Sharma"
-              className="relative rounded-2xl"
-              fill
-              sizes="(max-width: 768px) 96px, 96px"
-              priority
-              objectFit="cover"
-            />
-          </div>
+      <div className="border-2 border-gray-800 mx-auto py-10 rounded-3xl w-full max-w-[280px]">
+        {/* Profile Image */}
+        <motion.div
+          className="relative mx-auto w-52 h-52"
+          variants={imageAnimation}
+          initial="initial"
+          animate="animate"
+          whileHover={{ scale: 1.05 }}
+        >
+          <Image
+            src="/images/profile.jpeg"
+            alt="Yash Sharma"
+            className="relative rounded-2xl"
+            fill
+            sizes="(max-width: 768px) 280px, 280px"
+            priority
+            objectFit="cover"
+          />
+        </motion.div>
 
-          {/* Text Content */}
-          <div className="flex flex-col gap-2 min-w-0">
-            <h1 className="font-bold text-2xl text-white">YASH SHARMA</h1>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              A software engineer developing seamless user experiences with
-              modern web technologies.
-            </p>
-          </div>
-        </div>
+        {/* Text Content */}
+        <motion.div
+          className="flex flex-col items-center space-y-1.5 mt-3"
+          variants={{
+            initial: { opacity: 0, y: 10 },
+            animate: {
+              opacity: 1,
+              y: 0,
+              transition: { delay: 0.2, duration: 0.4 },
+            },
+          }}
+          initial="initial"
+          animate="animate"
+        >
+          <motion.h1
+            className="font-bold text-3xl text-white"
+            whileHover={{ scale: 1.05 }}
+          >
+            YASH SHARMA
+          </motion.h1>
+          <motion.h4
+            className="text-center text-gray-400 text-sm leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            A software engineer developing seamless user experiences
+          </motion.h4>
+        </motion.div>
 
         {/* Social Links */}
-        <div className="flex gap-3 mt-6">
+        <motion.div
+          className="flex justify-center gap-3 mt-3"
+          variants={{
+            initial: { opacity: 0, y: 10 },
+            animate: {
+              opacity: 1,
+              y: 0,
+              transition: { staggerChildren: 0.1 },
+            },
+          }}
+          initial="initial"
+          animate="animate"
+        >
           {[
-            { icon: <RiTwitterXFill size={18} />, href: CONTACT_LINKS.twitter },
+            { icon: <RiTwitterXFill size={16} />, href: CONTACT_LINKS.twitter },
             {
-              icon: <RiLinkedinFill size={18} />,
+              icon: <RiLinkedinFill size={16} />,
               href: CONTACT_LINKS.linkedin,
             },
-            { icon: <RiGithubFill size={18} />, href: CONTACT_LINKS.github },
-          ].map((social) => (
-            <Link
+            { icon: <RiGithubFill size={16} />, href: CONTACT_LINKS.github },
+          ].map((social, i) => (
+            <motion.div
               key={social.href}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex justify-center items-center bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-xl w-9 h-9 text-white transition-all active:scale-95"
+              variants={socialIconVariants}
+              initial="initial"
+              animate="animate"
+              whileHover="hover"
+              custom={i}
             >
-              {social.icon}
-            </Link>
+              <Link
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex justify-center items-center bg-gray-800/50 hover:bg-gray-700/50 rounded-lg w-8 h-8 text-gray-300 transition-all"
+              >
+                {social.icon}
+              </Link>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

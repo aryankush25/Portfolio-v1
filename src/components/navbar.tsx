@@ -37,6 +37,29 @@ const navItems = [
   },
 ];
 
+const mobileNavItems = [
+  {
+    text: "Projects",
+    icon: <FaProjectDiagram className="text-lg" />,
+    href: "#projects",
+  },
+  {
+    text: "Experience",
+    icon: <MdWork className="text-lg" />,
+    href: "#experience",
+  },
+  {
+    text: "Tech Stack",
+    icon: <FaTools className="text-lg" />,
+    href: "#tech-stack",
+  },
+  {
+    text: "Blog",
+    icon: <MdArticle className="text-lg" />,
+    href: "#blog",
+  },
+];
+
 const containerVariants = {
   expanded: {
     width: "36rem",
@@ -77,9 +100,11 @@ const contentVariants = {
 
 function MobileNav() {
   const [activeSection, setActiveSection] = useState("profile");
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
+      // Update active section
       const sections = navItems.map((item) => ({
         id: item.href.slice(1),
         element: document.getElementById(item.href.slice(1)),
@@ -94,6 +119,9 @@ function MobileNav() {
       if (currentSection) {
         setActiveSection(currentSection.id);
       }
+
+      // Show/hide scroll to top button
+      setShowScrollTop(window.scrollY > 200);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -103,39 +131,68 @@ function MobileNav() {
   const handleNavClick = (href: string) => {
     const element = document.getElementById(href.slice(1));
     if (element) {
-      const yOffset = -100;
-      const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
+      const offset = -40;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <motion.div
-      className="right-0 bottom-0 left-0 z-50 fixed border-gray-800 md:hidden bg-black/90 backdrop-blur-sm border-t"
-      initial={{ y: 100 }}
-      animate={{ y: 0 }}
-      transition={{ type: "spring", damping: 20, stiffness: 100 }}
-    >
-      <div className="gap-1 grid grid-cols-4 px-2 py-2">
-        {navItems.slice(0, 4).map(({ text, icon, href }) => (
+    <>
+      <motion.div
+        className="right-0 bottom-0 left-0 z-50 fixed border-gray-800 md:hidden bg-black/90 backdrop-blur-sm border-t"
+        initial={{ y: 100 }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring", damping: 20, stiffness: 100 }}
+      >
+        <div className="gap-1 grid grid-cols-4 px-2 py-2">
+          {mobileNavItems.map(({ text, icon, href }) => (
+            <motion.button
+              key={text}
+              onClick={() => handleNavClick(href)}
+              className={`flex flex-col items-center justify-center py-1 transition-colors ${
+                activeSection === href.slice(1)
+                  ? "text-blue-400"
+                  : "text-white/70"
+              }`}
+              whileTap={{ scale: 0.95 }}
+            >
+              <div className="mb-0.5 text-lg">{icon}</div>
+              <span className="w-full font-medium text-[10px] text-center truncate">
+                {text}
+              </span>
+            </motion.button>
+          ))}
+        </div>
+      </motion.div>
+
+      <AnimatePresence>
+        {showScrollTop && (
           <motion.button
-            key={text}
-            onClick={() => handleNavClick(href)}
-            className={`flex flex-col items-center justify-center py-1 transition-colors ${
-              activeSection === href.slice(1)
-                ? "text-blue-400"
-                : "text-white/70"
-            }`}
-            whileTap={{ scale: 0.95 }}
+            onClick={scrollToTop}
+            className="right-4 bottom-20 z-50 fixed md:hidden bg-blue-500 hover:bg-blue-600 shadow-lg p-3 rounded-full text-white"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.5 }}
+            whileTap={{ scale: 0.9 }}
           >
-            <div className="mb-0.5 text-lg">{icon}</div>
-            <span className="w-full font-medium text-[10px] text-center truncate">
-              {text}
-            </span>
+            <HiHome className="text-xl" />
           </motion.button>
-        ))}
-      </div>
-    </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
@@ -185,9 +242,7 @@ export default function Navbar() {
   const handleNavClick = (href: string) => {
     const element = document.getElementById(href.slice(1));
     if (element) {
-      const yOffset = -100;
-      const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -200,7 +255,7 @@ export default function Navbar() {
 
   return (
     <div className="">
-      <div className="mx-auto w-full max-w-screen-xl h-20" />
+      <div className="mx-auto w-full max-w-screen-xl md:h-20" />
       <AnimatePresence>
         {isLoaded && (
           <>
