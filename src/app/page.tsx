@@ -24,42 +24,17 @@ export default function Home() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  if (isMobile) {
-    return (
-      <div className="relative bg-black px-4 py-8 min-h-screen">
-        <div className="space-y-8 mx-auto max-w-lg">
-          <div className="space-y-4 text-center">
-            <h2 className="font-bold text-2xl text-white">
-              Mobile View Under Construction
-            </h2>
-            <p className="text-gray-400">
-              The mobile version is being optimized for a better experience.
-            </p>
-            <p className="text-gray-400">
-              Please visit on a desktop for the full experience.
-            </p>
-          </div>
-          <div className="space-y-4">
-            <Resume />
-
-            <GitHubContributions />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div
-      className="relative bg-black min-h-screen"
+      className="relative min-h-screen"
       itemScope
       itemType="http://schema.org/Person"
     >
       <div className="relative mx-auto px-4 py-8 max-w-screen-xl">
-        <div className="flex gap-24 mt-8">
+        <div className={`flex  ${isMobile ? "flex-col" : "gap-24 mt-8"}`}>
           <aside
             id="profile"
-            className="flex-shrink-0 w-[400px]"
+            className="md:flex-shrink-0 md:w-[400px]"
             itemProp="author"
             itemScope
             itemType="http://schema.org/Person"
@@ -154,7 +129,7 @@ export default function Home() {
           </main>
         </div>
 
-        <footer className="mt-16 text-center text-gray-500">
+        <footer className="mt-16 mb-20 md:mb-0 text-center text-gray-500">
           <p>© {new Date().getFullYear()} Yash Sharma. All rights reserved.</p>
         </footer>
       </div>

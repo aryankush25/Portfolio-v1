@@ -107,32 +107,30 @@ const RecentProjects = () => {
         ease: [0.6, -0.05, 0.01, 0.99],
       },
     },
-    hover: {
-      scale: 1.02,
-      transition: { duration: 0.2 },
-    },
   };
 
   return (
     <motion.div
-      className="space-y-16 pt-32"
+      className="space-y-8 md:space-y-16 px-4 md:px-0 pt-16 md:pt-32"
       variants={containerVariants}
       initial="initial"
       animate="animate"
     >
       <motion.div variants={titleVariants}>
-        <div className="flex items-center gap-4 mb-4">
-          <HiOutlineSparkles className="w-8 h-8 text-white" />
-          <h3 className="font-medium text-2xl text-white">Featured Work</h3>
+        <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
+          <HiOutlineSparkles className="w-6 md:w-8 h-6 md:h-8 text-white" />
+          <h3 className="font-medium text-white text-xl md:text-2xl">
+            Featured Work
+          </h3>
         </div>
-        <motion.h2 className="font-bold text-[120px] leading-none">
+        <motion.h2 className="font-bold text-5xl md:text-[120px] leading-none">
           <span className="text-white">RECENT</span>{" "}
           <span className="text-gray-600">PROJECTS</span>
         </motion.h2>
       </motion.div>
 
       <motion.div
-        className="gap-12 grid grid-cols-1"
+        className="gap-6 md:gap-12 grid grid-cols-1"
         variants={{
           initial: { opacity: 0 },
           animate: {
@@ -147,28 +145,27 @@ const RecentProjects = () => {
         {projects.map((project) => (
           <motion.div
             key={project.title}
-            className={`p-8 rounded-3xl bg-gradient-to-br ${project.gradient} backdrop-blur-3xl border border-white/10 hover:border-white/20 transition-all group relative overflow-hidden`}
+            className={`p-5 md:p-8 rounded-3xl bg-gradient-to-br ${project.gradient} backdrop-blur-3xl border border-white/10 md:hover:border-white/20 transition-all group relative overflow-hidden md:[&:hover]:scale-105`}
             variants={cardVariants}
-            whileHover="hover"
           >
             <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:20px_20px]" />
-            <div className="relative space-y-6">
-              <div className="flex justify-between items-start">
+            <div className="relative space-y-4 md:space-y-6">
+              <div className="flex justify-between items-start gap-4">
                 <div>
-                  <h3 className="group-hover:text-white/90 mb-2 font-bold text-4xl text-white transition-colors">
+                  <h3 className="md:group-hover:text-white/90 mb-2 font-bold text-2xl text-white md:text-4xl transition-colors">
                     {project.title}
                   </h3>
-                  <div className="flex items-center gap-2 text-gray-400 text-lg">
-                    <FiBriefcase className="w-5 h-5" />
-                    <p>{project.role}</p>
+                  <div className="flex items-center gap-2 text-base text-gray-400 md:text-lg">
+                    <FiBriefcase className="w-4 md:w-5 h-4 md:h-5 shrink-0" />
+                    <p className="line-clamp-1">{project.role}</p>
                   </div>
-                  <div className="flex items-center gap-4 mt-2">
-                    <div className="flex items-center gap-2 text-gray-500">
-                      <FiCalendar className="w-4 h-4" />
+                  <div className="flex flex-wrap items-center gap-4 mt-2">
+                    <div className="flex items-center gap-2 text-gray-500 text-sm md:text-base">
+                      <FiCalendar className="w-4 h-4 shrink-0" />
                       <p>{formatDuration(project.duration).start}</p>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-500">
-                      <FiClock className="w-4 h-4" />
+                    <div className="flex items-center gap-2 text-gray-500 text-sm md:text-base">
+                      <FiClock className="w-4 h-4 shrink-0" />
                       <p
                         className={
                           formatDuration(project.duration).isPresent
@@ -185,29 +182,35 @@ const RecentProjects = () => {
                   href={`https://${project.url}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:bg-white/5 p-2 rounded-full text-gray-400 hover:text-white transition-colors"
+                  className="md:flex hidden hover:bg-white/5 p-2 rounded-full text-gray-400 hover:text-white transition-colors shrink-0"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <FiExternalLink size={24} />
+                  <FiExternalLink className="w-5 md:w-6 h-5 md:h-6" />
                 </motion.a>
+                <a
+                  href={`https://${project.url}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex md:hidden p-2 rounded-full text-gray-400 shrink-0"
+                >
+                  <FiExternalLink className="w-5 h-5" />
+                </a>
               </div>
 
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-gray-300 text-sm md:text-base leading-relaxed">
                 {project.description}
               </p>
 
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2 md:gap-3">
                 {project.technologies.map((tech) => (
-                  <motion.span
+                  <span
                     key={tech}
-                    className="flex items-center gap-2 border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 px-4 py-2 border rounded-full text-gray-300 text-sm transition-colors cursor-default"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center gap-1.5 md:gap-2 border-white/10 md:hover:border-white/20 bg-white/5 md:hover:bg-white/10 px-3 md:px-4 py-1.5 md:py-2 border rounded-full text-gray-300 text-xs md:text-sm transition-colors cursor-default"
                   >
                     {getTechIcon(tech)}
                     {tech}
-                  </motion.span>
+                  </span>
                 ))}
               </div>
             </div>

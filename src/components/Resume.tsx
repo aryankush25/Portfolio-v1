@@ -4,7 +4,7 @@ import { FiDownload } from "react-icons/fi";
 export default function Resume() {
   return (
     <motion.div
-      className="space-y-12 pt-10 md:pt-32"
+      className="space-y-8 md:space-y-12 px-4 md:px-0 pt-10 md:pt-32"
       initial="initial"
       animate="animate"
       variants={{
@@ -37,20 +37,16 @@ export default function Resume() {
       >
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-sm" />
 
-        <div className="relative flex flex-col items-center gap-8 p-16 text-center">
-          <motion.div
-            className="bg-white/5 backdrop-blur-sm p-8 rounded-full"
-            whileHover={{ scale: 1.1, rotate: 360 }}
-            transition={{ duration: 0.5 }}
-          >
-            <FiDownload size={48} className="text-white" />
-          </motion.div>
+        <div className="relative flex flex-col items-center gap-6 md:gap-8 p-8 md:p-16 text-center">
+          <div className="bg-white/5 backdrop-blur-sm p-6 md:p-8 rounded-full">
+            <FiDownload className="w-8 md:w-12 h-8 md:h-12 text-white" />
+          </div>
 
-          <div className="space-y-4">
-            <h3 className="font-bold text-4xl text-white">
+          <div className="space-y-3 md:space-y-4">
+            <h3 className="font-bold text-2xl text-white md:text-4xl">
               Download My Resume
             </h3>
-            <p className="max-w-2xl text-gray-400 text-xl">
+            <p className="max-w-2xl text-base text-gray-400 md:text-xl">
               Get a detailed overview of my skills, experience, and achievements
               in a comprehensive PDF format.
             </p>
@@ -59,11 +55,9 @@ export default function Resume() {
           <motion.a
             href="/Yash-Sharma-Resume.pdf"
             download
-            className="flex items-center gap-2 bg-gradient-to-r from-blue-500 hover:from-blue-600 to-purple-500 hover:to-purple-600 px-8 py-4 rounded-xl font-semibold text-lg text-white transition-all"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-2 bg-gradient-to-r from-blue-500 md:hover:from-blue-600 to-purple-500 md:hover:to-purple-600 px-6 md:px-8 py-3 md:py-4 rounded-xl font-semibold text-base text-white md:text-lg transition-all md:hover:scale-105 active:scale-95"
           >
-            <FiDownload size={20} />
+            <FiDownload className="w-4 md:w-5 h-4 md:h-5" />
             <span>Download Resume</span>
           </motion.a>
 

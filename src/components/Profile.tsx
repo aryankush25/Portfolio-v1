@@ -12,7 +12,6 @@ const imageAnimation = {
   initial: { scale: 0.8, borderRadius: "16px" },
   animate: {
     scale: 1,
-    borderRadius: ["16px", "30px", "16px"],
     transition: {
       borderRadius: {
         duration: 3,
@@ -61,22 +60,115 @@ const shimmerEffect = {
   },
 };
 
-const floatingAnimation = {
-  y: [-10, 10],
-  transition: {
-    y: {
-      duration: 2,
-      repeat: Infinity,
-      repeatType: "reverse",
-      ease: "easeInOut",
-    },
-  },
-};
-
 type CustomCSSProperties = {
   "--mouse-x": string;
   "--mouse-y": string;
 };
+
+function MobileProfile() {
+  return (
+    <motion.div
+      id="profile"
+      className="flex flex-col md:hidden px-4 w-full"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="border-2 border-gray-800 mx-auto py-10 rounded-3xl w-full max-w-[280px]">
+        {/* Profile Image */}
+        <motion.div
+          className="relative mx-auto w-52 h-52"
+          variants={imageAnimation}
+          initial="initial"
+          animate="animate"
+          whileHover={{ scale: 1.05 }}
+        >
+          <Image
+            src="/images/profile.jpeg"
+            alt="Yash Sharma"
+            className="relative rounded-2xl"
+            fill
+            sizes="(max-width: 768px) 280px, 280px"
+            priority
+            objectFit="cover"
+          />
+        </motion.div>
+
+        {/* Text Content */}
+        <motion.div
+          className="flex flex-col items-center space-y-1.5 mt-3"
+          variants={{
+            initial: { opacity: 0, y: 10 },
+            animate: {
+              opacity: 1,
+              y: 0,
+              transition: { delay: 0.2, duration: 0.4 },
+            },
+          }}
+          initial="initial"
+          animate="animate"
+        >
+          <motion.h1
+            className="font-bold text-3xl text-white"
+            whileHover={{ scale: 1.05 }}
+          >
+            YASH SHARMA
+          </motion.h1>
+          <motion.h4
+            className="text-center text-gray-400 text-sm leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            A software engineer developing seamless user experiences
+          </motion.h4>
+        </motion.div>
+
+        {/* Social Links */}
+        <motion.div
+          className="flex justify-center gap-3 mt-3"
+          variants={{
+            initial: { opacity: 0, y: 10 },
+            animate: {
+              opacity: 1,
+              y: 0,
+              transition: { staggerChildren: 0.1 },
+            },
+          }}
+          initial="initial"
+          animate="animate"
+        >
+          {[
+            { icon: <RiTwitterXFill size={16} />, href: CONTACT_LINKS.twitter },
+            {
+              icon: <RiLinkedinFill size={16} />,
+              href: CONTACT_LINKS.linkedin,
+            },
+            { icon: <RiGithubFill size={16} />, href: CONTACT_LINKS.github },
+          ].map((social, i) => (
+            <motion.div
+              key={social.href}
+              variants={socialIconVariants}
+              initial="initial"
+              animate="animate"
+              whileHover="hover"
+              custom={i}
+            >
+              <Link
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex justify-center items-center bg-gray-800/50 hover:bg-gray-700/50 rounded-lg w-8 h-8 text-gray-300 transition-all"
+              >
+                {social.icon}
+              </Link>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function Profile() {
   const profileRef = useRef<HTMLDivElement>(null);
@@ -114,119 +206,119 @@ export default function Profile() {
   }, []);
 
   return (
-    <motion.div
-      ref={profileRef}
-      className="md:block top-36 fixed hidden bg-gradient-to-br from-gray-900 to-black rounded-3xl w-[400px] h-[700px] overflow-hidden"
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-        perspective: 1000,
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-    >
-      <ParticleBackground />
-
+    <>
+      <MobileProfile />
       <motion.div
-        className="absolute inset-0"
+        ref={profileRef}
+        className="md:block top-32 fixed hidden bg-gradient-to-br from-gray-900 to-black rounded-3xl w-[400px] h-[680px] overflow-hidden"
         style={{
-          background:
-            "radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--gradient-color, #4f46e5) 0%, transparent 60%)",
-          opacity: 0.15,
-          mixBlendMode: "screen",
+          rotateX,
+          rotateY,
+          transformStyle: "preserve-3d",
+          perspective: 1000,
         }}
-        animate={
-          {
-            "--mouse-x": mouseX.get() + "px",
-            "--mouse-y": mouseY.get() + "px",
-          } as CustomCSSProperties
-        }
-      />
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <ParticleBackground />
 
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
-        variants={shimmerEffect}
-        initial="hidden"
-        animate="visible"
-        style={{
-          backgroundSize: "200% 100%",
-        }}
-      />
-
-      <div className="relative flex flex-col items-center gap-8 p-8">
         <motion.div
-          className="relative w-[320px] h-[360px] group"
-          variants={imageAnimation}
-          initial="initial"
-          animate="animate"
-          whileHover={{ scale: 1.05 }}
-        >
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--gradient-color, #4f46e5) 0%, transparent 60%)",
+            opacity: 0.15,
+            mixBlendMode: "screen",
+          }}
+          animate={
+            {
+              "--mouse-x": mouseX.get() + "px",
+              "--mouse-y": mouseY.get() + "px",
+            } as CustomCSSProperties
+          }
+        />
+
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
+          variants={shimmerEffect}
+          initial="hidden"
+          animate="visible"
+          style={{
+            backgroundSize: "200% 100%",
+          }}
+        />
+
+        <div className="relative flex flex-col items-center px-8 py-12">
           <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl"
-            animate={floatingAnimation}
-          />
-          <Image
-            src="/images/profile.jpeg"
-            alt="Yash Sharma"
-            className="relative rounded-2xl"
-            fill
-            objectFit="cover"
-          />
-        </motion.div>
-
-        <motion.div
-          className="space-y-6 text-center"
-          animate={floatingAnimation}
-        >
-          <motion.h1
-            className="font-bold text-4xl text-white"
+            className="relative w-[300px] h-[340px] group"
+            variants={imageAnimation}
+            initial="initial"
+            animate="animate"
             whileHover={{ scale: 1.05 }}
           >
-            YASH SHARMA
-          </motion.h1>
+            <motion.div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl" />
+            <Image
+              src="/images/profile.jpeg"
+              alt="Yash Sharma"
+              className="relative rounded-2xl"
+              fill
+              objectFit="cover"
+            />
+          </motion.div>
 
-          <motion.p
-            className="text-gray-300 text-xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-          >
-            A software engineer developing seamless user experiences with modern
-            web technologies.
-          </motion.p>
-        </motion.div>
-
-        <div className="flex gap-6">
-          {[
-            { icon: <RiTwitterXFill size={24} />, href: CONTACT_LINKS.twitter },
-            {
-              icon: <RiLinkedinFill size={24} />,
-              href: CONTACT_LINKS.linkedin,
-            },
-            { icon: <RiGithubFill size={24} />, href: CONTACT_LINKS.github },
-          ].map((social, i) => (
-            <motion.div
-              key={social.href}
-              variants={socialIconVariants}
-              initial="initial"
-              animate="animate"
-              whileHover="hover"
-              custom={i}
+          <motion.div className="space-y-5 mt-10 text-center">
+            <motion.h1
+              className="font-bold text-4xl text-white"
+              whileHover={{ scale: 1.05 }}
             >
-              <Link
-                href={social.href}
-                className="flex justify-center items-center bg-gradient-to-r from-blue-500/20 hover:from-blue-500/30 to-purple-500/20 hover:to-purple-500/30 rounded-full w-12 h-12 text-white transition-all"
+              YASH SHARMA
+            </motion.h1>
+
+            <motion.p
+              className="max-w-[320px] text-gray-300 text-lg"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+            >
+              A software engineer developing seamless user experiences with
+              modern web technologies.
+            </motion.p>
+          </motion.div>
+
+          <div className="flex gap-5 mt-10">
+            {[
+              {
+                icon: <RiTwitterXFill size={22} />,
+                href: CONTACT_LINKS.twitter,
+              },
+              {
+                icon: <RiLinkedinFill size={22} />,
+                href: CONTACT_LINKS.linkedin,
+              },
+              { icon: <RiGithubFill size={22} />, href: CONTACT_LINKS.github },
+            ].map((social, i) => (
+              <motion.div
+                key={social.href}
+                variants={socialIconVariants}
+                initial="initial"
+                animate="animate"
+                whileHover="hover"
+                custom={i}
               >
-                {social.icon}
-              </Link>
-            </motion.div>
-          ))}
+                <Link
+                  href={social.href}
+                  className="flex justify-center items-center bg-gradient-to-r from-blue-500/20 hover:from-blue-500/30 to-purple-500/20 hover:to-purple-500/30 rounded-full w-11 h-11 text-white transition-all"
+                >
+                  {social.icon}
+                </Link>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </>
   );
 }
