@@ -24,7 +24,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#000000" />
 
         {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="shortcut icon" href="/favicon.ico" />
         <link
           rel="icon"
           type="image/png"
@@ -38,7 +38,6 @@ export default function RootLayout({
           href="/favicon-16x16.png"
         />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
         <link rel="manifest" href="/site.webmanifest" />
 
         {/* Preconnect to external domains */}
