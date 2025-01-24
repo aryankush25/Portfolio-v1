@@ -96,7 +96,7 @@ export default function Navbar() {
           >
             <div className="mx-auto px-4 py-6 max-w-screen-xl">
               <motion.div
-                className="relative flex items-center border-2 bg-gray-900 mx-auto border-black rounded-full overflow-hidden"
+                className="relative flex items-center border-2 border-gray-800 bg-black mx-auto rounded-full overflow-hidden"
                 variants={containerVariants}
                 animate={variant}
                 onHoverStart={() => setIsHovered(true)}

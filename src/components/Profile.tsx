@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { RiTwitterXFill, RiLinkedinFill, RiGithubFill } from "react-icons/ri";
 import { useEffect, useRef } from "react";
+import ParticleBackground from "./ParticleBackground";
 
 const imageAnimation = {
   initial: { scale: 0.8, borderRadius: "16px" },
@@ -14,7 +15,7 @@ const imageAnimation = {
     borderRadius: ["16px", "30px", "16px"],
     transition: {
       borderRadius: {
-        duration: 5,
+        duration: 3,
         repeat: Infinity,
         ease: "easeInOut",
       },
@@ -48,15 +49,14 @@ const socialIconVariants = {
   },
 };
 
-const glowAnimation = {
-  initial: { opacity: 0.4 },
-  animate: {
-    opacity: [0.4, 0.6, 0.4],
-    scale: [1, 1.1, 1],
+const shimmerEffect = {
+  hidden: { backgroundPosition: "200% 0" },
+  visible: {
+    backgroundPosition: "-200% 0",
     transition: {
       duration: 4,
       repeat: Infinity,
-      ease: "easeInOut",
+      ease: "linear",
     },
   },
 };
@@ -76,12 +76,24 @@ export default function Profile() {
   return (
     <motion.div
       ref={profileRef}
-      className="relative bg-gradient-to-br from-gray-900 to-black rounded-3xl w-[400px] h-[70dvh] overflow-hidden"
+      className="top-48 fixed bg-gradient-to-br from-gray-900 to-black rounded-3xl w-[400px] h-[70dvh] overflow-hidden"
       style={{ borderRadius }}
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
+      <ParticleBackground />
+
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
+        variants={shimmerEffect}
+        initial="hidden"
+        animate="visible"
+        style={{
+          backgroundSize: "200% 100%",
+        }}
+      />
+
       <div className="relative flex flex-col items-center gap-8 p-8">
         <motion.div
           className="relative w-[320px] h-[360px] group"
@@ -89,29 +101,11 @@ export default function Profile() {
           initial="initial"
           animate="animate"
         >
-          <motion.div
-            className="absolute -inset-4 bg-gradient-to-r from-blue-500/50 via-purple-500/50 to-pink-500/50 blur-2xl rounded-[30px]"
-            variants={glowAnimation}
-            initial="initial"
-            animate="animate"
-          />
-          <motion.div
-            className="absolute -inset-4 bg-gradient-to-r from-blue-600/50 via-purple-600/50 to-pink-600/50 blur-md rounded-[30px]"
-            animate={{
-              opacity: [0.3, 0.5, 0.3],
-              scale: [1, 1.05, 1],
-              transition: {
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.5,
-              },
-            }}
-          />
+          <motion.div className="absolute rounded-2xl" />
           <Image
             src="/images/profile.jpeg"
             alt="Yash Sharma"
-            className="relative border-2 border-white/10 rounded-2xl"
+            className="relative rounded-2xl"
             fill
             objectFit="cover"
           />
@@ -119,6 +113,7 @@ export default function Profile() {
 
         <div className="space-y-6 text-center">
           <h1 className="font-bold text-4xl text-white">YASH SHARMA</h1>
+
           <motion.p
             className="text-gray-300 text-xl"
             initial={{ opacity: 0, y: 20 }}
