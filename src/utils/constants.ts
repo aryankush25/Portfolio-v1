@@ -2,9 +2,9 @@ import { FiLayers, FiCode } from "react-icons/fi";
 import { MdOutlineChat } from "react-icons/md";
 
 export const CONTACT_LINKS = {
-  twitter: "https://twitter.com/yashsharma",
-  linkedin: "https://linkedin.com/in/yashsharma",
-  github: "https://github.com/yashsharma",
+  twitter: "https://x.com/YashSh0031",
+  linkedin: "https://www.linkedin.com/in/yashsharma31/",
+  github: "https://github.com/yashsharma31",
 };
 
 export const HERO_SECTION = {
