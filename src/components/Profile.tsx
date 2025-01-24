@@ -195,7 +195,8 @@ export default function Profile() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
           >
-            A software engineer developed seamless user experiences.
+            A software engineer developing seamless user experiences with modern
+            web technologies.
           </motion.p>
         </motion.div>
 
