@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-const SITE_URL = "https://yashsharma.com";
+const SITE_URL = "https://sharmayash.com";
 const PROFILE_DESCRIPTION =
   "Software engineer specializing in React, Next.js, and modern web technologies. Experienced in building exceptional digital experiences with expertise in WebGL, TypeScript, and UI/UX design.";
 
