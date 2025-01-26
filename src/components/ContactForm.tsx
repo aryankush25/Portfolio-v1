@@ -21,10 +21,38 @@ export default function ContactForm() {
   });
 
   useEffect(() => {
-    if (process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
-      emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
-      setIsInitialized(true);
-    }
+    const initEmailJS = async () => {
+      try {
+        const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+        const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+        const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+
+        // Debug logging
+        console.log("Environment Variables Status:", {
+          hasPublicKey: !!publicKey,
+          hasServiceId: !!serviceId,
+          hasTemplateId: !!templateId,
+        });
+
+        if (!publicKey) {
+          console.error("EmailJS public key is missing");
+          return;
+        }
+
+        // Add a small delay to ensure environment variables are loaded
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        // Initialize with just the public key
+        await emailjs.init(publicKey);
+
+        setIsInitialized(true);
+        console.log("EmailJS initialized successfully");
+      } catch (error) {
+        console.error("Failed to initialize EmailJS:", error);
+      }
+    };
+
+    initEmailJS();
   }, []);
 
   const handleChange = (
