@@ -1,100 +1,215 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { FiUser, FiMail, FiMessageSquare, FiBriefcase } from "react-icons/fi";
 import { FaTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import emailjs from "emailjs-com";
+
+interface EmailJSError extends Error {
+  text?: string;
+}
 
 export default function ContactForm() {
-  return (
-    <motion.div
-      className="space-y-8 md:space-y-12 px-4 md:px-6 pt-16 md:pt-32"
-      initial="initial"
-      animate="animate"
-      variants={{
-        initial: { opacity: 0 },
-        animate: {
-          opacity: 1,
-          transition: {
-            staggerChildren: 0.15,
-          },
-        },
-      }}
-    >
-      <motion.h2
-        className="font-bold text-4xl text-white md:text-[120px] leading-none"
-        variants={{
-          initial: { opacity: 0, y: 20 },
-          animate: { opacity: 1, y: 0 },
-        }}
-      >
-        LET&apos;S WORK TOGETHER
-      </motion.h2>
+  const [isLoading, setIsLoading] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
 
-      <motion.form
-        className="space-y-6 md:space-y-8 max-w-4xl"
-        variants={{
-          initial: { opacity: 0, y: 20 },
-          animate: { opacity: 1, y: 0 },
-        }}
+  useEffect(() => {
+    if (process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
+      emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
+      setIsInitialized(true);
+    }
+  }, []);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    if (!isInitialized) {
+      toast.error("Email service is still initializing. Please try again.");
+      setIsLoading(false);
+      return;
+    }
+
+    if (
+      !process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ||
+      !process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ||
+      !process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+    ) {
+      toast.error("Email service is not configured properly.");
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      const result = await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      );
+
+      if (result.text === "OK") {
+        toast.success("Message sent successfully!");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      }
+    } catch (error) {
+      const emailJSError = error as EmailJSError;
+      toast.error(
+        emailJSError?.text || "Failed to send message. Please try again."
+      );
+      console.error("Error sending email:", {
+        message: emailJSError?.text,
+        details: emailJSError,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="space-y-8">
+      <Toaster position="top-right" />
+      <div className="space-y-4">
+        <h1 className="font-bold text-4xl text-white md:text-5xl">
+          Let&apos;s Work Together
+        </h1>
+        <p className="max-w-2xl text-zinc-400 leading-relaxed">
+          Have a project in mind? Fill out the form below with some info about
+          your project and I will get back to you as soon as I can.
+        </p>
+      </div>
+
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-6 border-zinc-800/50 bg-zinc-900/50 p-6 border rounded-2xl"
       >
-        <div className="gap-4 md:gap-6 grid grid-cols-1 md:grid-cols-2">
+        <div className="gap-6 grid grid-cols-1 md:grid-cols-2">
           <div className="space-y-2">
-            <label className="flex items-center gap-2 font-medium text-indigo-300/70 text-sm">
+            <label className="flex items-center gap-2 font-medium text-sm text-zinc-300">
               <FiUser className="w-4 h-4" /> Name
             </label>
             <div className="relative group">
               <input
                 type="text"
-                className="border-zinc-800 focus:border-indigo-500/30 bg-zinc-900/50 px-4 py-3 md:py-4 pl-12 border rounded-xl w-full text-zinc-100 placeholder:text-zinc-600 transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-indigo-500/20"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="border-zinc-700/50 focus:border-indigo-500/50 bg-zinc-800/50 focus:bg-zinc-800/70 px-4 py-3 pl-12 rounded-xl w-full text-zinc-100 placeholder:text-zinc-500 transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-indigo-500/20"
                 placeholder="John Doe"
               />
-              <FiUser className="group-focus-within:text-indigo-400 top-1/2 left-4 absolute w-4 h-4 text-zinc-600 transition-colors -translate-y-1/2 duration-300" />
+              <FiUser className="group-focus-within:text-indigo-400 top-1/2 left-4 absolute w-4 h-4 text-zinc-500 transition-colors -translate-y-1/2 duration-300" />
             </div>
           </div>
           <div className="space-y-2">
-            <label className="flex items-center gap-2 font-medium text-indigo-300/70 text-sm">
+            <label className="flex items-center gap-2 font-medium text-sm text-zinc-300">
               <FiMail className="w-4 h-4" /> Email
             </label>
             <div className="relative group">
               <input
                 type="email"
-                className="border-zinc-800 focus:border-indigo-500/30 bg-zinc-900/50 px-4 py-3 md:py-4 pl-12 border rounded-xl w-full text-zinc-100 placeholder:text-zinc-600 transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-indigo-500/20"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="border-zinc-700/50 focus:border-indigo-500/50 bg-zinc-800/50 focus:bg-zinc-800/70 px-4 py-3 pl-12 rounded-xl w-full text-zinc-100 placeholder:text-zinc-500 transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-indigo-500/20"
                 placeholder="john@example.com"
               />
-              <FiMail className="group-focus-within:text-indigo-400 top-1/2 left-4 absolute w-4 h-4 text-zinc-600 transition-colors -translate-y-1/2 duration-300" />
+              <FiMail className="group-focus-within:text-indigo-400 top-1/2 left-4 absolute w-4 h-4 text-zinc-500 transition-colors -translate-y-1/2 duration-300" />
             </div>
           </div>
         </div>
 
         <div className="space-y-2">
-          <label className="flex items-center gap-2 font-medium text-indigo-300/70 text-sm">
+          <label className="flex items-center gap-2 font-medium text-sm text-zinc-300">
             <FiBriefcase className="w-4 h-4" /> Subject
           </label>
           <div className="relative group">
             <input
               type="text"
-              className="border-zinc-800 focus:border-indigo-500/30 bg-zinc-900/50 px-4 py-3 md:py-4 pl-12 border rounded-xl w-full text-zinc-100 placeholder:text-zinc-600 transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-indigo-500/20"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
+              required
+              className="border-zinc-700/50 focus:border-indigo-500/50 bg-zinc-800/50 focus:bg-zinc-800/70 px-4 py-3 pl-12 rounded-xl w-full text-zinc-100 placeholder:text-zinc-500 transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-indigo-500/20"
               placeholder="Tell me about your project"
             />
-            <FiBriefcase className="group-focus-within:text-indigo-400 top-1/2 left-4 absolute w-4 h-4 text-zinc-600 transition-colors -translate-y-1/2 duration-300" />
+            <FiBriefcase className="group-focus-within:text-indigo-400 top-1/2 left-4 absolute w-4 h-4 text-zinc-500 transition-colors -translate-y-1/2 duration-300" />
           </div>
         </div>
 
         <div className="space-y-2">
-          <label className="flex items-center gap-2 font-medium text-indigo-300/70 text-sm">
+          <label className="flex items-center gap-2 font-medium text-sm text-zinc-300">
             <FiMessageSquare className="w-4 h-4" /> Message
           </label>
           <div className="relative group">
             <textarea
-              className="border-zinc-800 focus:border-indigo-500/30 bg-zinc-900/50 px-4 py-3 md:py-4 pl-12 border rounded-xl w-full h-32 md:h-40 text-zinc-100 placeholder:text-zinc-600 transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-indigo-500/20 resize-none"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
+              rows={6}
+              className="border-zinc-700/50 focus:border-indigo-500/50 bg-zinc-800/50 focus:bg-zinc-800/70 px-4 py-3 pl-12 rounded-xl w-full text-zinc-100 placeholder:text-zinc-500 transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-indigo-500/20 resize-none"
               placeholder="Share the details of your project, timeline, and any specific requirements..."
             />
-            <FiMessageSquare className="group-focus-within:text-indigo-400 top-4 md:top-6 left-4 absolute w-4 h-4 text-zinc-600 transition-colors duration-300" />
+            <FiMessageSquare className="group-focus-within:text-indigo-400 top-4 left-4 absolute w-4 h-4 text-zinc-500 transition-colors duration-300" />
           </div>
         </div>
 
-        <button className="bg-gradient-to-r from-indigo-500 md:hover:from-indigo-600 to-purple-500 md:hover:to-purple-600 shadow-indigo-500/10 shadow-lg px-6 py-3 md:py-4 rounded-xl w-full font-semibold text-base text-zinc-100 md:text-lg transition-all duration-300 md:hover:scale-[1.02] active:scale-[0.98]">
-          Send Message
+        <button
+          type="submit"
+          disabled={isLoading || !isInitialized}
+          className={`w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white font-semibold px-8 py-4 rounded-xl shadow-lg shadow-indigo-500/20 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
+            isLoading || !isInitialized ? "opacity-70 cursor-not-allowed" : ""
+          }`}
+        >
+          {isLoading ? (
+            <span className="flex justify-center items-center gap-2">
+              <svg className="w-5 h-5 animate-spin" viewBox="0 0 24 24">
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                  fill="none"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                />
+              </svg>
+              Sending...
+            </span>
+          ) : !isInitialized ? (
+            "Initializing..."
+          ) : (
+            "Send Message"
+          )}
         </button>
 
         <div className="flex sm:flex-row flex-col justify-between items-center gap-4 pt-4 text-sm text-zinc-500">
@@ -126,7 +241,7 @@ export default function ContactForm() {
             </a>
           </div>
         </div>
-      </motion.form>
-    </motion.div>
+      </form>
+    </div>
   );
 }

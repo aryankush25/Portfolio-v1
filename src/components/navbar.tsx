@@ -6,6 +6,7 @@ import { MdWork, MdArticle } from "react-icons/md";
 import { FaProjectDiagram, FaTools, FaCertificate } from "react-icons/fa";
 import { RiContactsLine } from "react-icons/ri";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const navItems = [
   {
@@ -201,6 +202,9 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("profile");
   const [showScrollTop, setShowScrollTop] = useState(false);
 
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoaded(true);
@@ -250,6 +254,10 @@ export default function Navbar() {
       behavior: "smooth",
     });
   };
+
+  if (!isHome) {
+    return null;
+  }
 
   return (
     <div className="">
