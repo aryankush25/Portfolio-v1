@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     site: "@yash_sh0031",
   },
   verification: {
-    google: "your-google-verification-code",
+    google: `google-site-verification=${process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION}`,
   },
   alternates: {
     canonical: SITE_URL,
@@ -104,7 +104,6 @@ export const metadata: Metadata = {
     ],
   },
   other: {
-    "google-site-verification": "your-google-verification-code",
     "msapplication-TileColor": "#000000",
     "theme-color": "#000000",
   },
