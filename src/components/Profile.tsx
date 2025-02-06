@@ -3,10 +3,9 @@
 import { CONTACT_LINKS } from "@/utils/constants";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion } from "framer-motion";
 import { RiTwitterXFill, RiLinkedinFill, RiGithubFill } from "react-icons/ri";
 import { useEffect, useRef } from "react";
-import ParticleBackground from "./ParticleBackground";
 
 const imageAnimation = {
   initial: { scale: 0.8, borderRadius: "16px" },
@@ -58,11 +57,6 @@ const shimmerEffect = {
       ease: "linear",
     },
   },
-};
-
-type CustomCSSProperties = {
-  "--mouse-x": string;
-  "--mouse-y": string;
 };
 
 function MobileProfile() {
@@ -172,25 +166,6 @@ function MobileProfile() {
 
 export default function Profile() {
   const profileRef = useRef<HTMLDivElement>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const rotateX = useTransform(mouseY, [-300, 300], [10, -10]);
-  const rotateY = useTransform(mouseX, [-300, 300], [-10, 10]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = profileRef.current?.getBoundingClientRect();
-    if (rect) {
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      mouseX.set(x);
-      mouseY.set(y);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    animate(mouseX, 0, { duration: 0.5 });
-    animate(mouseY, 0, { duration: 0.5 });
-  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -211,34 +186,18 @@ export default function Profile() {
       <motion.div
         ref={profileRef}
         className="md:block top-32 fixed hidden bg-gradient-to-br from-gray-900 to-black rounded-3xl w-[400px] h-[680px] overflow-hidden"
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: "preserve-3d",
-          perspective: 1000,
-        }}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <ParticleBackground />
-
         <motion.div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--gradient-color, #4f46e5) 0%, transparent 60%)",
+              "radial-gradient(circle at 50% 50%, var(--gradient-color, #4f46e5) 0%, transparent 60%)",
             opacity: 0.15,
             mixBlendMode: "screen",
           }}
-          animate={
-            {
-              "--mouse-x": mouseX.get() + "px",
-              "--mouse-y": mouseY.get() + "px",
-            } as CustomCSSProperties
-          }
         />
 
         <motion.div
@@ -253,7 +212,7 @@ export default function Profile() {
 
         <div className="relative flex flex-col items-center px-8 py-12">
           <motion.div
-            className="relative w-[300px] h-[340px] group"
+            className="group relative w-[300px] h-[340px]"
             variants={imageAnimation}
             initial="initial"
             animate="animate"

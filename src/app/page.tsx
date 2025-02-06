@@ -9,6 +9,7 @@ import PremiumTools from "@/components/PremiumTools";
 import Certifications from "@/components/Certifications";
 import Resume from "@/components/Resume";
 import GitHubContributions from "@/components/GitHubContributions";
+import ParticleBackground from "@/components/ParticleBackground";
 import { useEffect, useState } from "react";
 import { CONTACT_LINKS } from "@/utils/constants";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
@@ -32,6 +33,7 @@ export default function Home() {
       itemScope
       itemType="http://schema.org/Person"
     >
+      <ParticleBackground />
       <div className="relative mx-auto px-4 py-8 md:pt-0 max-w-screen-xl">
         <div className={`flex  ${isMobile ? "flex-col" : "gap-24"}`}>
           <aside
