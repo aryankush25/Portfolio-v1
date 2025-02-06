@@ -2,37 +2,43 @@
 
 import { motion, useScroll, AnimatePresence } from "framer-motion";
 import { HiHome } from "react-icons/hi";
-import { MdWork, MdArticle } from "react-icons/md";
-import { FaProjectDiagram, FaTools, FaCertificate } from "react-icons/fa";
-import { RiContactsLine } from "react-icons/ri";
+import { BsBriefcaseFill, BsFileEarmarkTextFill } from "react-icons/bs";
+import { GoProjectSymlink } from "react-icons/go";
+import { BiSolidLayer } from "react-icons/bi";
+import { IoMdMail } from "react-icons/io";
+import { PiCertificateFill } from "react-icons/pi";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 const navItems = [
   {
     text: "Projects",
-    icon: <FaProjectDiagram className="text-lg" />,
+    icon: <GoProjectSymlink className="text-lg" />,
     href: "#projects",
   },
   {
     text: "Experience",
-    icon: <MdWork className="text-lg" />,
+    icon: <BsBriefcaseFill className="text-lg" />,
     href: "#experience",
   },
   {
     text: "Tech Stack",
-    icon: <FaTools className="text-lg" />,
+    icon: <BiSolidLayer className="text-lg" />,
     href: "#tech-stack",
   },
-  { text: "Blog", icon: <MdArticle className="text-lg" />, href: "#blog" },
+  {
+    text: "Blog",
+    icon: <BsFileEarmarkTextFill className="text-lg" />,
+    href: "#blog",
+  },
   {
     text: "Contact",
-    icon: <RiContactsLine className="text-lg" />,
+    icon: <IoMdMail className="text-lg" />,
     href: "#contact",
   },
   {
     text: "Certifications",
-    icon: <FaCertificate className="text-lg" />,
+    icon: <PiCertificateFill className="text-lg" />,
     href: "#certifications",
   },
 ];
@@ -40,22 +46,22 @@ const navItems = [
 const mobileNavItems = [
   {
     text: "Projects",
-    icon: <FaProjectDiagram className="text-lg" />,
+    icon: <GoProjectSymlink className="text-lg" />,
     href: "#projects",
   },
   {
     text: "Experience",
-    icon: <MdWork className="text-lg" />,
+    icon: <BsBriefcaseFill className="text-lg" />,
     href: "#experience",
   },
   {
     text: "Tech Stack",
-    icon: <FaTools className="text-lg" />,
+    icon: <BiSolidLayer className="text-lg" />,
     href: "#tech-stack",
   },
   {
     text: "Blog",
-    icon: <MdArticle className="text-lg" />,
+    icon: <BsFileEarmarkTextFill className="text-lg" />,
     href: "#blog",
   },
 ];

@@ -11,7 +11,8 @@ import Resume from "@/components/Resume";
 import GitHubContributions from "@/components/GitHubContributions";
 import { useEffect, useState } from "react";
 import { CONTACT_LINKS } from "@/utils/constants";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
@@ -189,7 +190,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className="text-zinc-400 hover:text-zinc-200 transition-colors"
                   >
-                    <FaTwitter className="text-lg" />
+                    <FaXTwitter className="text-lg" />
                   </a>
                 </div>
               </div>

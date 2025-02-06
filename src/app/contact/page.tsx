@@ -1,10 +1,11 @@
 "use client";
 
 import ContactForm from "@/components/ContactForm";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiArrowLeft } from "react-icons/hi";
 import Link from "next/link";
 import { CONTACT_LINKS } from "@/utils/constants";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function ContactPage() {
   return (
@@ -54,7 +55,7 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                   className="bg-zinc-800 hover:bg-zinc-700 p-3 rounded-xl transition-all duration-300 hover:scale-110"
                 >
-                  <FaTwitter className="w-6 h-6 text-zinc-300" />
+                  <FaXTwitter className="w-6 h-6 text-zinc-300" />
                 </a>
               </div>
             </div>

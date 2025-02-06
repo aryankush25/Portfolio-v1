@@ -1,10 +1,11 @@
 "use client";
 
 import { FiUser, FiMail, FiMessageSquare, FiBriefcase } from "react-icons/fi";
-import { FaTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa";
+import { FaLinkedinIn, FaGithub } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import emailjs from "emailjs-com";
+import { FaXTwitter } from "react-icons/fa6";
 
 interface EmailJSError extends Error {
   text?: string;
@@ -138,7 +139,7 @@ export default function ContactForm() {
             <label className="flex items-center gap-2 font-medium text-sm text-zinc-300">
               <FiUser className="w-4 h-4" /> Name
             </label>
-            <div className="relative group">
+            <div className="group relative">
               <input
                 type="text"
                 name="name"
@@ -155,7 +156,7 @@ export default function ContactForm() {
             <label className="flex items-center gap-2 font-medium text-sm text-zinc-300">
               <FiMail className="w-4 h-4" /> Email
             </label>
-            <div className="relative group">
+            <div className="group relative">
               <input
                 type="email"
                 name="email"
@@ -174,7 +175,7 @@ export default function ContactForm() {
           <label className="flex items-center gap-2 font-medium text-sm text-zinc-300">
             <FiBriefcase className="w-4 h-4" /> Subject
           </label>
-          <div className="relative group">
+          <div className="group relative">
             <input
               type="text"
               name="subject"
@@ -192,7 +193,7 @@ export default function ContactForm() {
           <label className="flex items-center gap-2 font-medium text-sm text-zinc-300">
             <FiMessageSquare className="w-4 h-4" /> Message
           </label>
-          <div className="relative group">
+          <div className="group relative">
             <textarea
               name="message"
               value={formData.message}
@@ -249,7 +250,7 @@ export default function ContactForm() {
               rel="noopener noreferrer"
               className="bg-zinc-800/50 md:hover:bg-zinc-800 p-2 rounded-full transition-all duration-300 md:hover:scale-110 active:scale-95"
             >
-              <FaTwitter className="w-4 md:w-5 h-4 md:h-5 text-zinc-400" />
+              <FaXTwitter className="w-4 md:w-5 h-4 md:h-5 text-zinc-400" />
             </a>
             <a
               href="https://linkedin.com"
