@@ -1,6 +1,23 @@
-# Allow all crawlers
+# Allow Googlebot
+User-agent: Googlebot
+Allow: /
+Allow: /contact
+Disallow: /api/
+
+# Allow Google Mobile
+User-agent: Googlebot-Mobile
+Allow: /
+Allow: /contact
+Disallow: /api/
+
+# Allow all other crawlers
 User-agent: *
 Allow: /
+Allow: /contact
+Disallow: /api/
+
+# Crawl-delay
+Crawl-delay: 10
 
 # Sitemap location
 Sitemap: https://sharmayash.com/sitemap.xml 

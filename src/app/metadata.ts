@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: "Yash Sharma | Software Engineer",
-    template: "%s | Yash Sharma",
+    template: "%s | Yash Sharma - Software Engineer",
   },
   description: PROFILE_DESCRIPTION,
   keywords: [
@@ -26,21 +26,20 @@ export const metadata: Metadata = {
     "UI/UX Design",
     "Web Development",
     "Software Development",
+    "India",
+    "Remote Developer",
   ],
-  authors: [
-    {
-      name: "Yash Sharma",
-      url: SITE_URL,
-    },
-  ],
+  authors: [{ name: "Yash Sharma", url: SITE_URL }],
   creator: "Yash Sharma",
   publisher: "Yash Sharma",
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
@@ -50,15 +49,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: SITE_URL,
-    siteName: "Yash Sharma Portfolio",
-    title: "Yash Sharma | Software Engineer",
+    siteName: "Yash Sharma - Software Engineer Portfolio",
+    title: "Yash Sharma | Software Engineer & Web Developer",
     description: PROFILE_DESCRIPTION,
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Yash Sharma - Software Engineer",
+        alt: "Yash Sharma - Software Engineer Portfolio",
       },
     ],
   },
@@ -71,7 +70,7 @@ export const metadata: Metadata = {
     site: "@yash_sh0031",
   },
   verification: {
-    google: `google-site-verification=${process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION}`,
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
   alternates: {
     canonical: SITE_URL,
