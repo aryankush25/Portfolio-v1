@@ -2,7 +2,7 @@
 
 import { motion, useScroll, AnimatePresence } from "framer-motion";
 import { HiHome } from "react-icons/hi";
-import { BsBriefcaseFill, BsFileEarmarkTextFill } from "react-icons/bs";
+import { BsBriefcaseFill } from "react-icons/bs";
 import { GoProjectSymlink } from "react-icons/go";
 import { BiSolidLayer } from "react-icons/bi";
 import { IoMdMail } from "react-icons/io";
@@ -25,11 +25,6 @@ const navItems = [
     icon: <BiSolidLayer className="text-lg" />,
     href: "#tech-stack",
   },
-  // {
-  //   text: "Blog",
-  //   icon: <BsFileEarmarkTextFill className="text-lg" />,
-  //   href: "#blog",
-  // },
   {
     text: "Contact",
     icon: <IoMdMail className="text-lg" />,
@@ -53,11 +48,6 @@ const mobileNavItems = [
     icon: <BiSolidLayer className="text-lg" />,
     href: "#tech-stack",
   },
-  // {
-  //   text: "Blog",
-  //   icon: <BsFileEarmarkTextFill className="text-lg" />,
-  //   href: "#blog",
-  // },
   {
     text: "Contact",
     icon: <IoMdMail className="text-lg" />,
