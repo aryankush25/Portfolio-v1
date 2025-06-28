@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import emailjs from "emailjs-com";
 import { FaXTwitter } from "react-icons/fa6";
+import { CONTACT_LINKS } from "@/utils/constants";
 
 interface EmailJSError extends Error {
   text?: string;
@@ -245,7 +246,8 @@ export default function ContactForm() {
           <p className="font-medium">Made with 💜 by Aryan</p>
           <div className="flex gap-4">
             <a
-              href="https://twitter.com"
+              href={CONTACT_LINKS.twitter}
+              title="Twitter"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-zinc-800/50 md:hover:bg-zinc-800 p-2 rounded-full transition-all duration-300 md:hover:scale-110 active:scale-95"
@@ -253,7 +255,8 @@ export default function ContactForm() {
               <FaXTwitter className="w-4 md:w-5 h-4 md:h-5 text-zinc-400" />
             </a>
             <a
-              href="https://linkedin.com"
+              href={CONTACT_LINKS.linkedin}
+              title="LinkedIn"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-zinc-800/50 md:hover:bg-zinc-800 p-2 rounded-full transition-all duration-300 md:hover:scale-110 active:scale-95"
@@ -261,7 +264,8 @@ export default function ContactForm() {
               <FaLinkedinIn className="w-4 md:w-5 h-4 md:h-5 text-zinc-400" />
             </a>
             <a
-              href="https://github.com"
+              href={CONTACT_LINKS.github}
+              title="GitHub"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-zinc-800/50 md:hover:bg-zinc-800 p-2 rounded-full transition-all duration-300 md:hover:scale-110 active:scale-95"
