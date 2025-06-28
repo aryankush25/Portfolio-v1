@@ -2,39 +2,39 @@ import { FiLayers, FiCode } from "react-icons/fi";
 import { MdOutlineChat } from "react-icons/md";
 
 export const CONTACT_LINKS = {
-  twitter: "https://x.com/YashSh0031",
-  linkedin: "https://www.linkedin.com/in/yashsharma31/",
-  github: "https://github.com/yashsharma31",
+  twitter: "https://x.com/aryankush25",
+  linkedin: "https://linkedin.com/in/aryankush25/",
+  github: "https://github.com/aryankush25",
 };
 
 export const HERO_SECTION = {
-  title: "FRONTEND",
-  titleColored: "DEVELOPER",
+  title: "SENIOR SOFTWARE",
+  titleColored: "ENGINEER",
   description:
-    "Passionate about crafting exceptional web experiences with React and Next.js. Specializing in building high-performance applications with modern web technologies.",
+    "Specializing in building scalable and innovative solutions with 6+ years of experience in software development. Currently working at Thoughtworks and building Dashgen.",
   stats: [
     { number: "50+", text: "GITHUB REPOSITORIES" },
-    { number: "10K+", text: "LINES OF CODE" },
-    { number: "15+", text: "SUCCESSFUL PROJECTS" },
+    { number: "15K+", text: "LINES OF CODE" },
+    { number: "20+", text: "SUCCESSFUL PROJECTS" },
   ],
 };
 
 export const FEATURED_PROJECTS = [
   {
-    title: "CURSOR.SO",
-    description: "AI-Powered Code Editor",
+    title: "DASHGEN",
+    description: "Unified AI Platform",
     icon: FiCode,
     isDark: true,
   },
   {
-    title: "CHATGPT CLONE",
-    description: "Voice-Enabled AI Chat",
+    title: "GLUE IDENTITY",
+    description: "Authentication Platform",
     icon: MdOutlineChat,
     isDark: true,
   },
   {
-    title: "PORTFOLIO 2024",
-    description: "Next.js & Framer Motion",
+    title: "FIFO",
+    description: "Blogging Platform",
     icon: FiLayers,
     isDark: true,
   },
@@ -42,49 +42,49 @@ export const FEATURED_PROJECTS = [
 
 export const RECENT_PROJECTS = [
   {
-    title: "Cursor.so - AI Code Editor",
+    title: "Dashgen - Unified AI Platform",
     description:
-      "Built with Electron and React, featuring real-time collaboration, AI code completion, and advanced development tools.",
-    image: "/images/cursor.png",
+      "A unified platform for multiple AI models including OpenAI, Anthropic, Google Gemini, Mistral, xAI and DeepSeek.",
+    image: "/images/dashgen.png",
     gradient: "from-blue-500/10 to-purple-500/10",
-    link: "https://cursor.so",
+    link: "https://dashgen.in",
   },
   {
-    title: "ChatGPT Clone with Voice",
+    title: "Glue Identity - Authentication Platform",
     description:
-      "Full-stack application with voice recognition, real-time responses, and conversation history using OpenAI's API.",
-    image: "/images/chatgpt.png",
+      "Built an identity management platform with features like authentication, RBAC, and OAuth 2.0, designed for scalability and security.",
+    image: "/images/glue-identity.png",
+    gradient: "from-green-500/10 to-teal-500/10",
+    link: "https://id.glue.is",
+  },
+  {
+    title: "FIFO - Blogging Platform",
+    description:
+      "A modern blogging platform built with React and Node.js, featuring rich text editing and responsive design.",
+    image: "/images/fifo.png",
     gradient: "from-purple-500/10 to-pink-500/10",
-    link: "https://chat.example.com",
-  },
-  {
-    title: "Modern Portfolio 2024",
-    description:
-      "Responsive portfolio built with Next.js 14, Server Components, and Framer Motion for smooth animations.",
-    image: "/images/portfolio.png",
-    gradient: "from-pink-500/10 to-orange-500/10",
-    link: "https://portfolio.example.com",
+    link: "https://fifo.im",
   },
 ];
 
 export const EXPERIENCE = [
   {
-    company: "Software Engineer at Cursor.so",
+    company: "Senior Software Engineer at Thoughtworks",
     period: "2023 - Present",
     description:
-      "Leading frontend development of an AI-powered code editor. Implemented key features using Electron, React, and TypeScript. Integrated OpenAI's API for code completion and chat functionality.",
-    technologies: ["React", "Electron", "TypeScript", "OpenAI API"],
+      "Working as a Senior Software Engineer, specializing in building scalable and innovative solutions for enterprise clients.",
+    technologies: ["React", "Next.js", "TypeScript", "Node.js"],
   },
   {
-    company: "Frontend Developer at Tech Corp",
-    period: "2022 - 2023",
+    company: "Technical Lead at Glue Labs",
+    period: "2019 - 2023",
     description:
-      "Developed and maintained multiple React applications. Improved application performance by 40% through code optimization and modern web practices.",
+      "Led technical teams and developed multiple React applications. Improved application performance through code optimization and modern web practices.",
     technologies: ["React", "Next.js", "TailwindCSS", "TypeScript"],
   },
   {
-    company: "Web Developer at StartUp Inc",
-    period: "2021 - 2022",
+    company: "Software Developer",
+    period: "2017 - 2019",
     description:
       "Built responsive web applications and implemented modern UI/UX designs. Collaborated with designers and backend teams for seamless integration.",
     technologies: ["JavaScript", "React", "CSS3", "REST APIs"],
@@ -126,9 +126,9 @@ export const PREMIUM_TOOLS = [
 
 export const BLOG_POSTS = [
   {
-    title: "Building an AI-Powered Code Editor",
+    title: "Building Dashgen: A Unified AI Platform",
     description:
-      "A deep dive into creating Cursor.so, an AI-powered code editor using Electron and React. Learn about the challenges and solutions in building a modern development tool.",
+      "A deep dive into creating Dashgen, a unified platform for multiple AI models including OpenAI, Anthropic, Google Gemini, Mistral, xAI and DeepSeek.",
     date: "Jan 15, 2024",
   },
   {

@@ -23,11 +23,14 @@ const RecentProjects = () => {
     const icons: { [key: string]: React.ReactElement } = {
       "Next.js": <SiNextdotjs className="w-4 h-4" />,
       TypeScript: <SiTypescript className="w-4 h-4" />,
-      "Tailwind CSS": <SiTailwindcss className="w-4 h-4" />,
-      "React Pixi": <SiReact className="w-4 h-4" />,
-      "Pixi.js": <SiWebgl className="w-4 h-4" />,
-      SVG: <SiSvg className="w-4 h-4" />,
-      "React-Email": <BsEnvelopePaper className="w-4 h-4" />,
+      "TailwindCSS": <SiTailwindcss className="w-4 h-4" />,
+      "React Query": <SiReact className="w-4 h-4" />,
+      "NestJS": <SiWebgl className="w-4 h-4" />,
+      "PostgreSQL": <SiSvg className="w-4 h-4" />,
+      "Redis": <BsEnvelopePaper className="w-4 h-4" />,
+      "LangChain": <HiOutlineSparkles className="w-4 h-4" />,
+      "Zustand": <SiReact className="w-4 h-4" />,
+      "Deepstream": <SiWebgl className="w-4 h-4" />,
     };
     return icons[tech] || <SiJavascript className="w-4 h-4" />;
   };
@@ -40,39 +43,60 @@ const RecentProjects = () => {
 
   const projects = [
     {
-      title: "Glue",
-      role: "Software Development Engineer",
-      duration: "03/2022 - Present",
+      title: "Dashgen",
+      role: "Founder & Lead Developer",
+      duration: "01/2023 - Present",
       description:
-        "Orchestrated a canvas using Pixi.js and React-pixi with WebGL rendering for high-performance 2D graphics processing, achieving 30% more efficiency. Traced performance bottlenecks resulting in a 150ms reduction in load time.",
+        "Currently building a unified platform for multiple AI models including OpenAI, Anthropic, Google Gemini, Mistral, xAI and DeepSeek. The platform provides a seamless way to integrate and manage multiple AI models through a single, user-friendly dashboard.",
       technologies: [
-        "Pixi.js",
-        "React Pixi",
         "Next.js",
+        "TailwindCSS",
+        "React Query",
         "Zustand",
-        "TypeScript",
+        "NestJS",
+        "PostgreSQL",
+        "Redis",
+        "LangChain",
       ],
-      url: "glue.is",
+      url: "dashgen.in",
       gradient: "from-blue-500/10 to-purple-500/10",
     },
     {
-      title: "Dashgen",
-      role: "Software Development Engineer and UI/UX Designer",
-      duration: "06/2024 - Present",
+      title: "Glue Identity",
+      role: "Technical Lead",
+      duration: "05/2022 - 12/2022",
       description:
-        "Developed a multi-platform AI integration tool with 5 different AI models, achieving 20% improvement in user experience through interface design.",
-      technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
-      url: "dashgen.in",
-      gradient: "from-purple-500/10 to-pink-500/10",
+        "Built an identity management platform with features like authentication, RBAC, and OAuth 2.0, designed for scalability and security. The platform provides enterprise-grade identity and access management solutions while maintaining high performance and user experience.",
+      technologies: [
+        "Next.js", 
+        "NestJS", 
+        "TailwindCSS", 
+        "React Query", 
+        "PostgreSQL", 
+        "Redis",
+        "Ory Kratos",
+        "Ory Hydra"
+      ],
+      url: "id.glue.is",
+      gradient: "from-green-500/10 to-teal-500/10",
     },
     {
-      title: "xG",
-      role: "Software Development Engineer",
-      duration: "05/2023 - 12/2024",
+      title: "FIFO",
+      role: "Technical Lead",
+      duration: "10/2021 - 04/2022",
       description:
-        "Engineered a high-performance video creator app using Pixi.js and React Pixi.js, resulting in 20% faster rendering. Designed an advanced email edit tool increasing customization by 40%. Built an image positioning system with 10x customization accuracy.",
-      technologies: ["Next.js", "React-Email", "SVG", "Tailwind CSS"],
-      gradient: "from-pink-500/10 to-orange-500/10",
+        "Built a modern blogging platform with React and Node.js, featuring rich text editing and responsive design. The platform combines modern web technologies to create an engaging and performant user experience while maintaining robust backend systems.",
+      technologies: [
+        "Next.js", 
+        "NestJS", 
+        "TailwindCSS", 
+        "React Query", 
+        "PostgreSQL", 
+        "Redis", 
+        "Deepstream"
+      ],
+      url: "fifo.im",
+      gradient: "from-purple-500/10 to-pink-500/10",
     },
   ];
 
@@ -182,6 +206,8 @@ const RecentProjects = () => {
                   href={`https://${project.url}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  title={`Visit ${project.title} website`}
+                  aria-label={`Visit ${project.title} website`}
                   className="md:flex hidden hover:bg-white/5 p-2 rounded-full text-gray-400 hover:text-white transition-colors shrink-0"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
@@ -192,6 +218,8 @@ const RecentProjects = () => {
                   href={`https://${project.url}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  title={`Visit ${project.title} website`}
+                  aria-label={`Visit ${project.title} website`}
                   className="flex md:hidden p-2 rounded-full text-gray-400 shrink-0"
                 >
                   <FiExternalLink className="w-5 h-5" />

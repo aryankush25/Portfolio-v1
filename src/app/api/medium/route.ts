@@ -10,7 +10,7 @@ interface MediumRSSItem {
   "content:encoded"?: string;
 }
 
-const MEDIUM_RSS_URL = "https://medium.com/feed/@yash.sh0031";
+const MEDIUM_RSS_URL = "https://medium.com/feed/@aryankush25";
 const parser = new Parser<{ items: MediumRSSItem[] }>();
 
 export async function GET() {

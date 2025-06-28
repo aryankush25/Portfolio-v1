@@ -6,7 +6,6 @@ import { BsBriefcaseFill, BsFileEarmarkTextFill } from "react-icons/bs";
 import { GoProjectSymlink } from "react-icons/go";
 import { BiSolidLayer } from "react-icons/bi";
 import { IoMdMail } from "react-icons/io";
-import { PiCertificateFill } from "react-icons/pi";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
@@ -35,11 +34,6 @@ const navItems = [
     text: "Contact",
     icon: <IoMdMail className="text-lg" />,
     href: "#contact",
-  },
-  {
-    text: "Certifications",
-    icon: <PiCertificateFill className="text-lg" />,
-    href: "#certifications",
   },
 ];
 

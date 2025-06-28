@@ -28,13 +28,13 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Yash Sharma",
-              url: "https://yashsharma.com",
-              image: "/images/profile.jpeg",
+              name: "Aryan Agarwal",
+              url: "https://v1.aryankush25.com/",
+              image: "/images/Aryan_new.JPG",
               sameAs: [
-                "https://github.com/yash-sh",
-                "https://linkedin.com/in/yash-sh",
-                "https://twitter.com/yash_sh0031",
+                "https://github.com/aryankush25",
+                "https://www.linkedin.com/in/aryankush25/",
+                "https://twitter.com/aryankush25",
               ],
               jobTitle: "Software Engineer",
               description:

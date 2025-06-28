@@ -67,24 +67,24 @@ const StatItem = ({ number, text, delay }: StatItemProps) => (
 
 const Stats = () => {
   const stats = [
-    { number: "~3", text: "YEARS OF EXPERIENCE" },
-    { number: "+18", text: "PROJECTS COMPLETED" },
-    { number: "+28", text: "WORKED LIBRARIES" },
+    { number: "6+", text: "YEARS OF EXPERIENCE" },
+    { number: "25+", text: "PROJECTS COMPLETED" },
+    { number: "40+", text: "TECH STACK EXPERTISE" },
   ];
 
   const projects = [
     {
       src: cicle,
       icon: <FiLayers className="w-8 md:w-10 h-8 md:h-10" color="white" />,
-      title: "VIDEO EDITOR WITH PIXI.JS",
-      link: "https://glue.is",
+      title: "DASHGEN - AI MODELS PLATFORM",
+      link: "https://dashgen.in",
       isDark: true,
     },
     {
       src: waves,
       icon: <MdOutlineChat className="w-8 md:w-10 h-8 md:h-10" color="black" />,
-      title: "AI CHAT WITH MULTIPLE LANGUAGES",
-      link: "https://dashgen.in",
+      title: "GLUE IDENTITY - AUTH PLATFORM",
+      link: "https://id.glue.is",
       isDark: false,
     },
   ];
@@ -99,11 +99,11 @@ const Stats = () => {
       >
         <motion.div variants={variants.fadeInUp} custom={0}>
           <motion.h2 className="font-bold text-5xl md:text-9xl leading-tight">
-            SOFTWARE <span className="text-gray-600">ENGINEER</span>
+            SENIOR SOFTWARE <span className="text-gray-600">ENGINEER</span>
           </motion.h2>
           <motion.h4 className="mt-6 md:mt-10 max-w-3xl text-gray-300 text-lg md:text-2xl">
-            Passionate about creating intuitive and engaging user experiences.
-            Specialize in transforming ideas into beautifully crafted products.
+            Specializing in building scalable and innovative solutions with modern web technologies.
+            Currently building Dashgen — a unified platform for multiple AI models.
           </motion.h4>
         </motion.div>
       </motion.div>

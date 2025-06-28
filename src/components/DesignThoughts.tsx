@@ -2,29 +2,24 @@
 
 import { motion } from "framer-motion";
 import { FiArrowRight, FiClock, FiTag } from "react-icons/fi";
-import { useEffect, useState } from "react";
-import { getMediumPosts, type MediumPost } from "@/utils/medium";
+import { type MediumPost } from "@/utils/medium";
 import Image from "next/image";
 
-const MEDIUM_PROFILE = "https://medium.com/@yash.sh0031";
+const MEDIUM_PROFILE = "https://medium.com/@aryankush25";
 
-export default function DesignThoughts() {
-  const [posts, setPosts] = useState<MediumPost[]>([]);
-  const [loading, setLoading] = useState(true);
+interface DesignThoughtsProps {
+  posts: MediumPost[];
+  loading: boolean;
+}
 
-  useEffect(() => {
-    async function fetchPosts() {
-      try {
-        const mediumPosts = await getMediumPosts();
-        setPosts(mediumPosts.slice(0, 4)); // Only take first 4 posts
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchPosts();
-  }, []);
+export default function DesignThoughts({ posts, loading }: DesignThoughtsProps) {
+  // Limit to 4 posts for display
+  const displayPosts = posts.slice(0, 4);
+
+  // If there are no posts and we're not loading, don't render anything
+  if (!loading && posts.length === 0) {
+    return null;
+  }
 
   return (
     <motion.div
@@ -95,7 +90,7 @@ export default function DesignThoughts() {
                 </div>
               </motion.div>
             ))
-          : posts.map((post) => (
+          : displayPosts.map((post) => (
               <motion.a
                 href={post.link}
                 target="_blank"

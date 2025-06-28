@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
-  title: "Contact | Yash Sharma",
-  description: "Contact Yash Sharma",
+  title: "Contact | Aryan Agarwal",
+  description: "Contact Aryan Agarwal",
 };
 
 export default function ContactLayout({

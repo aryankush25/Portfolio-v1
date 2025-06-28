@@ -78,8 +78,8 @@ function MobileProfile() {
           whileHover={{ scale: 1.05 }}
         >
           <Image
-            src="/images/profile.jpeg"
-            alt="Yash Sharma"
+            src="/images/Aryan_new.JPG"
+            alt="Aryan Agarwal"
             className="relative rounded-2xl"
             fill
             sizes="(max-width: 768px) 280px, 280px"
@@ -106,7 +106,7 @@ function MobileProfile() {
             className="font-bold text-3xl text-white"
             whileHover={{ scale: 1.05 }}
           >
-            YASH SHARMA
+            ARYAN AGARWAL
           </motion.h1>
           <motion.h4
             className="text-center text-gray-400 text-sm leading-relaxed"
@@ -114,7 +114,7 @@ function MobileProfile() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            A software engineer developing seamless user experiences
+            Senior Software Engineer at Thoughtworks building innovative software solutions
           </motion.h4>
         </motion.div>
 
@@ -152,6 +152,8 @@ function MobileProfile() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                title={social.href.includes('github') ? 'GitHub Profile' : social.href.includes('linkedin') ? 'LinkedIn Profile' : 'Twitter Profile'}
+                aria-label={`Visit Aryan's ${social.href.includes('github') ? 'GitHub' : social.href.includes('linkedin') ? 'LinkedIn' : 'Twitter'} Profile`}
                 className="flex justify-center items-center bg-gray-800/50 hover:bg-gray-700/50 rounded-lg w-8 h-8 text-gray-300 transition-all"
               >
                 {social.icon}
@@ -220,8 +222,8 @@ export default function Profile() {
           >
             <motion.div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl" />
             <Image
-              src="/images/profile.jpeg"
-              alt="Yash Sharma"
+              src="/images/Aryan_new.JPG"
+              alt="Aryan Agarwal"
               className="relative rounded-2xl"
               fill
               objectFit="cover"
@@ -233,7 +235,7 @@ export default function Profile() {
               className="font-bold text-4xl text-white"
               whileHover={{ scale: 1.05 }}
             >
-              YASH SHARMA
+              ARYAN AGARWAL
             </motion.h1>
 
             <motion.p
@@ -242,8 +244,8 @@ export default function Profile() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
             >
-              A software engineer developing seamless user experiences with
-              modern web technologies.
+              Senior Software Engineer at Thoughtworks specializing in building scalable and
+              innovative solutions with modern web technologies.
             </motion.p>
           </motion.div>
 
@@ -270,6 +272,8 @@ export default function Profile() {
                 <Link
                   href={social.href}
                   className="flex justify-center items-center bg-gradient-to-r from-blue-500/20 hover:from-blue-500/30 to-purple-500/20 hover:to-purple-500/30 rounded-full w-11 h-11 text-white transition-all"
+                  title={social.href.includes('github') ? 'GitHub Profile' : social.href.includes('linkedin') ? 'LinkedIn Profile' : 'Twitter Profile'}
+                  aria-label={`Visit Aryan's ${social.href.includes('github') ? 'GitHub' : social.href.includes('linkedin') ? 'LinkedIn' : 'Twitter'} Profile`}
                 >
                   {social.icon}
                 </Link>

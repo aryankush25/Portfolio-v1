@@ -1,19 +1,19 @@
 import { Metadata } from "next";
 
-const SITE_URL = "https://sharmayash.com";
+const SITE_URL = "https://v1.aryankush25.com/";
 const PROFILE_DESCRIPTION =
-  "Software engineer specializing in React, Next.js, and modern web technologies. Experienced in building exceptional digital experiences with expertise in WebGL, TypeScript, and UI/UX design.";
+  "Senior Software Engineer specializing in React, Next.js, and modern web technologies. Experienced in building scalable and innovative solutions with 6+ years of experience in software development.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Yash Sharma | Software Engineer",
-    template: "%s | Yash Sharma - Software Engineer",
+    default: "Aryan Agarwal | Senior Software Engineer",
+    template: "%s | Aryan Agarwal - Senior Software Engineer",
   },
   description: PROFILE_DESCRIPTION,
   keywords: [
-    "Yash Sharma",
-    "Software Engineer",
+    "Aryan Agarwal",
+    "Senior Software Engineer",
     "Web Developer",
     "React Developer",
     "Next.js Developer",
@@ -21,17 +21,17 @@ export const metadata: Metadata = {
     "Full Stack Developer",
     "JavaScript",
     "TypeScript",
-    "WebGL",
-    "Pixi.js",
-    "UI/UX Design",
+    "Thoughtworks",
+    "Glue Labs",
+    "Dashgen",
     "Web Development",
     "Software Development",
     "India",
     "Remote Developer",
   ],
-  authors: [{ name: "Yash Sharma", url: SITE_URL }],
-  creator: "Yash Sharma",
-  publisher: "Yash Sharma",
+  authors: [{ name: "Aryan Agarwal", url: SITE_URL }],
+  creator: "Aryan Agarwal",
+  publisher: "Aryan Agarwal",
   robots: {
     index: true,
     follow: true,
@@ -49,25 +49,25 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: SITE_URL,
-    siteName: "Yash Sharma - Software Engineer Portfolio",
-    title: "Yash Sharma | Software Engineer & Web Developer",
+    siteName: "Aryan Agarwal - Senior Software Engineer Portfolio",
+    title: "Aryan Agarwal | Senior Software Engineer & Web Developer",
     description: PROFILE_DESCRIPTION,
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Yash Sharma - Software Engineer Portfolio",
+        alt: "Aryan Agarwal - Senior Software Engineer Portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yash Sharma | Software Engineer",
+    title: "Aryan Agarwal | Senior Software Engineer",
     description: PROFILE_DESCRIPTION,
-    creator: "@yash_sh0031",
+    creator: "@aryankush25",
     images: ["/og-image.png"],
-    site: "@yash_sh0031",
+    site: "@aryankush25",
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,

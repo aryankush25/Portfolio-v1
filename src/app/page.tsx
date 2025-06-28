@@ -6,7 +6,6 @@ import RecentProjects from "@/components/RecentProjects";
 import Experience from "@/components/Experience";
 import DesignThoughts from "@/components/DesignThoughts";
 import PremiumTools from "@/components/PremiumTools";
-import Certifications from "@/components/Certifications";
 import Resume from "@/components/Resume";
 import GitHubContributions from "@/components/GitHubContributions";
 import ParticleBackground from "@/components/ParticleBackground";
@@ -14,9 +13,12 @@ import { useEffect, useState } from "react";
 import { CONTACT_LINKS } from "@/utils/constants";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { getMediumPosts, type MediumPost } from "@/utils/medium";
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
+  const [posts, setPosts] = useState<MediumPost[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -25,6 +27,21 @@ export default function Home() {
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Fetch Medium posts once at the page level
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        const mediumPosts = await getMediumPosts();
+        setPosts(mediumPosts);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchPosts();
   }, []);
 
   return (
@@ -48,9 +65,9 @@ export default function Home() {
 
           <main className="flex-1 space-y-8">
             <section aria-label="Statistics" className="hidden">
-              <span itemProp="jobTitle">Software Engineer</span>
-              <span itemProp="worksFor">Glue Labs</span>
-              <meta itemProp="email" content="yash.sh0031@gmail.com" />
+              <span itemProp="jobTitle">Senior Software Engineer</span>
+              <span itemProp="worksFor">Thoughtworks</span>
+              <meta itemProp="email" content="aryankush025@gmail.com" />
             </section>
 
             <section aria-label="Statistics">
@@ -97,19 +114,21 @@ export default function Home() {
               itemScope
               itemType="http://schema.org/DigitalDocument"
             >
-              <meta itemProp="name" content="Yash Sharma's Resume" />
+              <meta itemProp="name" content="Aryan Agarwal's Resume" />
               <Resume />
             </section>
 
-            <section
-              id="blog"
-              aria-label="Blog Posts"
-              itemScope
-              itemType="http://schema.org/Blog"
-            >
-              <meta itemProp="name" content="Design Thoughts Blog" />
-              <DesignThoughts />
-            </section>
+            {(posts.length > 0 || loading) && (
+              <section
+                id="blog"
+                aria-label="Blog Posts"
+                itemScope
+                itemType="http://schema.org/Blog"
+              >
+                <meta itemProp="name" content="Design Thoughts Blog" />
+                <DesignThoughts posts={posts} loading={loading} />
+              </section>
+            )}
 
             <section
               id="contact"
@@ -175,6 +194,8 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-zinc-400 hover:text-zinc-200 transition-colors"
+                    title="GitHub Profile"
+                    aria-label="Visit Aryan's GitHub Profile"
                   >
                     <FaGithub className="text-lg" />
                   </a>
@@ -183,6 +204,8 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-zinc-400 hover:text-zinc-200 transition-colors"
+                    title="LinkedIn Profile"
+                    aria-label="Visit Aryan's LinkedIn Profile"
                   >
                     <FaLinkedin className="text-lg" />
                   </a>
@@ -191,6 +214,8 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-zinc-400 hover:text-zinc-200 transition-colors"
+                    title="Twitter Profile"
+                    aria-label="Visit Aryan's Twitter Profile"
                   >
                     <FaXTwitter className="text-lg" />
                   </a>
@@ -198,20 +223,12 @@ export default function Home() {
               </div>
             </section>
 
-            <section
-              id="certifications"
-              aria-label="Certifications"
-              itemScope
-              itemType="http://schema.org/ItemList"
-            >
-              <meta itemProp="name" content="Professional Certifications" />
-              <Certifications />
-            </section>
+            {/* Certifications section removed as it's not in the current portfolio */}
           </main>
         </div>
 
         <footer className="mt-16 mb-20 md:mb-0 text-center text-gray-500">
-          <p>© {new Date().getFullYear()} Yash Sharma. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Aryan Agarwal. All rights reserved.</p>
         </footer>
       </div>
     </div>
