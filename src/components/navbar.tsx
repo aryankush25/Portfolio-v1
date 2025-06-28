@@ -53,10 +53,15 @@ const mobileNavItems = [
     icon: <BiSolidLayer className="text-lg" />,
     href: "#tech-stack",
   },
+  // {
+  //   text: "Blog",
+  //   icon: <BsFileEarmarkTextFill className="text-lg" />,
+  //   href: "#blog",
+  // },
   {
-    text: "Blog",
-    icon: <BsFileEarmarkTextFill className="text-lg" />,
-    href: "#blog",
+    text: "Contact",
+    icon: <IoMdMail className="text-lg" />,
+    href: "#contact",
   },
 ];
 
