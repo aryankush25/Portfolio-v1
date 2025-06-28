@@ -38,7 +38,7 @@ export default function RootLayout({
               ],
               jobTitle: "Senior Software Engineer",
               description:
-                "Senior Software Engineer specializing in building exceptional digital experiences.",
+                "Senior Software Engineer specializing in Node.js, NestJS, Express.js, React, Next.js, and modern web technologies. Experienced in building scalable and innovative solutions with 6+ years of experience in software development.",
               knowsAbout: [
                 "React",
                 "Next.js",
