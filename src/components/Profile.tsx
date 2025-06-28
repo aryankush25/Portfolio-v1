@@ -68,7 +68,7 @@ function MobileProfile() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="border-2 border-gray-800 mx-auto py-10 rounded-3xl w-full max-w-[280px]">
+      <div className="border-2 border-gray-800 mx-auto py-10 px-4 rounded-3xl w-full max-w-[320px]">
         {/* Profile Image */}
         <motion.div
           className="relative mx-auto w-52 h-52"
@@ -82,7 +82,7 @@ function MobileProfile() {
             alt="Aryan Agarwal"
             className="relative rounded-2xl"
             fill
-            sizes="(max-width: 768px) 280px, 280px"
+            sizes="(max-width: 768px) 320px, 320px"
             priority
             objectFit="cover"
           />
@@ -103,7 +103,7 @@ function MobileProfile() {
           animate="animate"
         >
           <motion.h1
-            className="font-bold text-3xl text-white"
+            className="font-bold text-3xl text-white text-center"
             whileHover={{ scale: 1.05 }}
           >
             ARYAN AGARWAL
@@ -114,7 +114,8 @@ function MobileProfile() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            Senior Software Engineer at Thoughtworks building innovative software solutions
+            Senior Software Engineer at Thoughtworks building innovative
+            software solutions
           </motion.h4>
         </motion.div>
 
@@ -152,8 +153,20 @@ function MobileProfile() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                title={social.href.includes('github') ? 'GitHub Profile' : social.href.includes('linkedin') ? 'LinkedIn Profile' : 'Twitter Profile'}
-                aria-label={`Visit Aryan's ${social.href.includes('github') ? 'GitHub' : social.href.includes('linkedin') ? 'LinkedIn' : 'Twitter'} Profile`}
+                title={
+                  social.href.includes("github")
+                    ? "GitHub Profile"
+                    : social.href.includes("linkedin")
+                    ? "LinkedIn Profile"
+                    : "Twitter Profile"
+                }
+                aria-label={`Visit Aryan's ${
+                  social.href.includes("github")
+                    ? "GitHub"
+                    : social.href.includes("linkedin")
+                    ? "LinkedIn"
+                    : "Twitter"
+                } Profile`}
                 className="flex justify-center items-center bg-gray-800/50 hover:bg-gray-700/50 rounded-lg w-8 h-8 text-gray-300 transition-all"
               >
                 {social.icon}
@@ -244,8 +257,8 @@ export default function Profile() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
             >
-              Senior Software Engineer at Thoughtworks specializing in building scalable and
-              innovative solutions with modern web technologies.
+              Senior Software Engineer at Thoughtworks specializing in building
+              scalable and innovative solutions with modern web technologies.
             </motion.p>
           </motion.div>
 
@@ -272,8 +285,20 @@ export default function Profile() {
                 <Link
                   href={social.href}
                   className="flex justify-center items-center bg-gradient-to-r from-blue-500/20 hover:from-blue-500/30 to-purple-500/20 hover:to-purple-500/30 rounded-full w-11 h-11 text-white transition-all"
-                  title={social.href.includes('github') ? 'GitHub Profile' : social.href.includes('linkedin') ? 'LinkedIn Profile' : 'Twitter Profile'}
-                  aria-label={`Visit Aryan's ${social.href.includes('github') ? 'GitHub' : social.href.includes('linkedin') ? 'LinkedIn' : 'Twitter'} Profile`}
+                  title={
+                    social.href.includes("github")
+                      ? "GitHub Profile"
+                      : social.href.includes("linkedin")
+                      ? "LinkedIn Profile"
+                      : "Twitter Profile"
+                  }
+                  aria-label={`Visit Aryan's ${
+                    social.href.includes("github")
+                      ? "GitHub"
+                      : social.href.includes("linkedin")
+                      ? "LinkedIn"
+                      : "Twitter"
+                  } Profile`}
                 >
                   {social.icon}
                 </Link>
