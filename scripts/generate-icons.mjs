@@ -40,7 +40,7 @@ async function generateOGImage(publicDir) {
   `);
 
   try {
-    const profilePath = join(process.cwd(), "public/images/profile.jpeg");
+    const profilePath = join(process.cwd(), "public/images/Aryan_new.JPG");
     const profileExists = await fs
       .access(profilePath)
       .then(() => true)
@@ -95,7 +95,7 @@ async function generateOGImage(publicDir) {
       // If no profile picture, just use the base OG image
       await sharp(ogBase).toFile(join(publicDir, "og-image.png"));
       console.log(
-        "⚠️ Profile image not found at public/images/profile.jpeg, generating OG image without profile picture"
+        "⚠️ Profile image not found at public/images/Aryan_new.JPG, generating OG image without profile picture"
       );
     }
   } catch (error) {
