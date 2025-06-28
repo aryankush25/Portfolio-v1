@@ -214,7 +214,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    return scrollY.onChange((latest) => {
+    return scrollY.on("change", (latest) => {
       setShowScrollTop(latest > 200);
     });
   }, [scrollY]);
