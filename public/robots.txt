@@ -20,4 +20,4 @@ Disallow: /api/
 Crawl-delay: 10
 
 # Sitemap location
-Sitemap: https://sharmayash.com/sitemap.xml 
+Sitemap: https://v1.aryankush25.com/sitemap.xml 

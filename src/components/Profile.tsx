@@ -257,8 +257,8 @@ export default function Profile() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
             >
-              Senior Software Engineer at Thoughtworks specializing in building
-              scalable and innovative solutions with modern web technologies.
+              Software Development Engineer specializing in building scalable
+              and innovative solutions.
             </motion.p>
           </motion.div>
 

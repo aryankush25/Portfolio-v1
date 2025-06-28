@@ -33,8 +33,8 @@ async function generateOGImage(publicDir) {
       </defs>
       <rect width="1200" height="630" fill="black"/>
       <rect x="0" y="0" width="1200" height="630" fill="url(#grad1)" opacity="0.1"/>
-      <text x="600" y="315" text-anchor="middle" font-family="system-ui" font-size="72" font-weight="bold" fill="white">Yash Sharma</text>
-      <text x="600" y="395" text-anchor="middle" font-family="system-ui" font-size="36" fill="#9CA3AF">Software Engineer</text>
+      <text x="600" y="315" text-anchor="middle" font-family="system-ui" font-size="72" font-weight="bold" fill="white">Aryan Agarwal</text>
+      <text x="600" y="395" text-anchor="middle" font-family="system-ui" font-size="36" fill="#9CA3AF">Senior Software Engineer</text>
       <text x="600" y="455" text-anchor="middle" font-family="system-ui" font-size="24" fill="#9CA3AF">React • Next.js • TypeScript • WebGL</text>
     </svg>
   `);
