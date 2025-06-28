@@ -69,7 +69,7 @@ const Stats = () => {
   const stats = [
     { number: "6+", text: "YEARS OF EXPERIENCE" },
     { number: "25+", text: "PROJECTS COMPLETED" },
-    { number: "40+", text: "TECH STACK EXPERTISE" },
+    { number: "10+", text: "TECH STACK EXPERTISE" },
   ];
 
   const projects = [
@@ -102,8 +102,9 @@ const Stats = () => {
             SENIOR SOFTWARE <span className="text-gray-600">ENGINEER</span>
           </motion.h2>
           <motion.h4 className="mt-6 md:mt-10 max-w-3xl text-gray-300 text-lg md:text-2xl">
-            Specializing in building scalable and innovative solutions with modern web technologies.
-            Currently building Dashgen — a unified platform for multiple AI models.
+            Specializing in building scalable and innovative solutions with
+            modern web technologies. Currently building Dashgen — a unified
+            platform for multiple AI models.
           </motion.h4>
         </motion.div>
       </motion.div>
