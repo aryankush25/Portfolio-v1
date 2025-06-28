@@ -7,18 +7,18 @@ const PROFILE_DESCRIPTION =
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Aryan Agarwal | Senior Software Engineer",
-    template: "%s | Aryan Agarwal - Senior Software Engineer",
+    default: "Aryan Agarwal | Senior Software Engineer & Full Stack Developer",
+    template:
+      "%s | Aryan Agarwal - Senior Software Engineer & Full Stack Developer",
   },
   description: PROFILE_DESCRIPTION,
   keywords: [
     "Aryan Agarwal",
     "Senior Software Engineer",
-    "Web Developer",
+    "Full Stack Developer",
     "React Developer",
     "Next.js Developer",
     "Frontend Engineer",
-    "Full Stack Developer",
     "JavaScript",
     "TypeScript",
     "Thoughtworks",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: SITE_URL,
     siteName: "Aryan Agarwal - Senior Software Engineer Portfolio",
-    title: "Aryan Agarwal | Senior Software Engineer & Web Developer",
+    title: "Aryan Agarwal | Senior Software Engineer & Full Stack Developer",
     description: PROFILE_DESCRIPTION,
     images: [
       {
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aryan Agarwal | Senior Software Engineer",
+    title: "Aryan Agarwal | Senior Software Engineer & Full Stack Developer",
     description: PROFILE_DESCRIPTION,
     creator: "@aryankush25",
     images: ["/og-image.png"],
