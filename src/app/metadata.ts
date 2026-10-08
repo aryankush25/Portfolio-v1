@@ -1,24 +1,23 @@
 import { Metadata } from "next";
 
-const SITE_URL = "https://v1.aryankush25.com/";
+const SITE_URL = "https://aryankush25.com";
 const PROFILE_DESCRIPTION =
-  "Senior Software Engineer specializing in Node.js, NestJS, Express.js, React, Next.js, and modern web technologies. Experienced in building scalable and innovative solutions with 6+ years of experience in software development.";
+  "Aryan Agarwal is a Senior Software Engineer and Technical Lead with nearly 8 years building backend and full-stack systems in Node.js and TypeScript.";
+const PAGE_TITLE = "Aryan Agarwal | Senior Software Engineer & Technical Lead";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Aryan Agarwal | Senior Software Engineer & Full Stack Developer",
-    template:
-      "%s | Aryan Agarwal - Senior Software Engineer & Full Stack Developer",
+    default: PAGE_TITLE,
+    template: "%s | Aryan Agarwal",
   },
   description: PROFILE_DESCRIPTION,
   keywords: [
     "Aryan Agarwal",
     "Senior Software Engineer",
-    "Full Stack Developer",
-    "React Developer",
-    "Next.js Developer",
-    "Frontend Engineer",
+    "Technical Lead",
+    "Backend Engineer",
+    "Full-Stack Engineer",
     "JavaScript",
     "TypeScript",
     "Node.js Developer",
@@ -27,10 +26,8 @@ export const metadata: Metadata = {
     "Thoughtworks",
     "Glue Labs",
     "Dashgen",
-    "Web Development",
     "Software Development",
     "India",
-    "Remote Developer",
   ],
   authors: [{ name: "Aryan Agarwal", url: SITE_URL }],
   creator: "Aryan Agarwal",
@@ -53,7 +50,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: SITE_URL,
     siteName: "Aryan Agarwal - Senior Software Engineer Portfolio",
-    title: "Aryan Agarwal | Senior Software Engineer & Full Stack Developer",
+    title: PAGE_TITLE,
     description: PROFILE_DESCRIPTION,
     images: [
       {
@@ -66,7 +63,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aryan Agarwal | Senior Software Engineer & Full Stack Developer",
+    title: PAGE_TITLE,
     description: PROFILE_DESCRIPTION,
     creator: "@aryankush25",
     images: ["/og-image.png"],

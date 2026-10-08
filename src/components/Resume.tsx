@@ -18,7 +18,7 @@ export default function Resume() {
       }}
     >
       <motion.h2
-        className="font-bold text-4xl md:text-[120px] leading-none"
+        className="font-bold text-4xl md:text-8xl lg:text-7xl xl:text-[120px] leading-none"
         variants={{
           initial: { opacity: 0, y: 20 },
           animate: { opacity: 1, y: 0 },
@@ -53,7 +53,7 @@ export default function Resume() {
           </div>
 
           <motion.a
-            href="/Aryan-Agarwal-Resume.pdf"
+            href="https://cdn.jsdelivr.net/gh/aryankush25/aryankush25@main/Aryan_Agarwal_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 bg-gradient-to-r from-blue-500 md:hover:from-blue-600 to-purple-500 md:hover:to-purple-600 px-6 md:px-8 py-3 md:py-4 rounded-xl font-semibold text-base text-white md:text-lg transition-all md:hover:scale-105 active:scale-95"

@@ -7,7 +7,6 @@ import Experience from "@/components/Experience";
 import DesignThoughts from "@/components/DesignThoughts";
 import PremiumTools from "@/components/PremiumTools";
 import Resume from "@/components/Resume";
-import GitHubContributions from "@/components/GitHubContributions";
 import ParticleBackground from "@/components/ParticleBackground";
 import { useEffect, useState } from "react";
 import { CONTACT_LINKS } from "@/utils/constants";
@@ -16,18 +15,8 @@ import { FaXTwitter } from "react-icons/fa6";
 import { getMediumPosts, type MediumPost } from "@/utils/medium";
 
 export default function Home() {
-  const [isMobile, setIsMobile] = useState(false);
   const [posts, setPosts] = useState<MediumPost[]>([]);
   const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   // Fetch Medium posts once at the page level
   useEffect(() => {
@@ -52,10 +41,10 @@ export default function Home() {
     >
       <ParticleBackground />
       <div className="relative mx-auto px-4 py-8 md:pt-0 max-w-screen-xl">
-        <div className={`flex  ${isMobile ? "flex-col" : "gap-24"}`}>
+        <div className="flex lg:flex-row flex-col lg:gap-12 xl:gap-24">
           <aside
             id="profile"
-            className="md:flex-shrink-0 md:w-[400px]"
+            className="lg:flex-shrink-0 lg:w-[400px]"
             itemProp="author"
             itemScope
             itemType="http://schema.org/Person"
@@ -63,7 +52,7 @@ export default function Home() {
             <Profile />
           </aside>
 
-          <main className="flex-1 space-y-8">
+          <main className="flex-1 space-y-8 min-w-0">
             <section aria-label="Statistics" className="hidden">
               <span itemProp="jobTitle">Senior Software Engineer</span>
               <span itemProp="worksFor">Thoughtworks</span>
@@ -72,10 +61,6 @@ export default function Home() {
 
             <section aria-label="Statistics">
               <Stats />
-            </section>
-
-            <section aria-label="GitHub Activity">
-              <GitHubContributions />
             </section>
 
             <section
@@ -139,7 +124,7 @@ export default function Home() {
             >
               <meta itemProp="name" content="Contact Information" />
               <div className="space-y-6">
-                <h2 className="font-bold text-4xl text-white md:text-[120px] leading-none">
+                <h2 className="font-bold text-4xl text-white md:text-8xl lg:text-7xl xl:text-[120px] leading-none">
                   LET&apos;S WORK TOGETHER
                 </h2>
                 <p className="max-w-2xl text-lg text-zinc-400 leading-relaxed">
@@ -149,7 +134,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="gap-8 grid md:grid-cols-3 max-w-4xl">
+              <div className="gap-8 grid md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3 max-w-4xl">
                 <div className="space-y-4 border-zinc-800/50 bg-zinc-900/50 p-6 border rounded-2xl">
                   <h3 className="font-semibold text-white text-xl">
                     Quick Response
@@ -162,11 +147,7 @@ export default function Home() {
 
                 <div className="space-y-4 border-zinc-800/50 bg-zinc-900/50 p-6 border rounded-2xl">
                   <h3 className="font-semibold text-white text-xl">Location</h3>
-                  <p className="text-zinc-400">
-                    Based in India
-                    <br />
-                    Available for remote work worldwide
-                  </p>
+                  <p className="text-zinc-400">Based in India</p>
                 </div>
 
                 <div className="space-y-4 border-zinc-800/50 bg-zinc-900/50 p-6 border rounded-2xl">

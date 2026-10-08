@@ -5,32 +5,62 @@ import {
   FiCalendar,
   FiBriefcase,
   FiClock,
+  FiGithub,
 } from "react-icons/fi";
 import { HiOutlineSparkles } from "react-icons/hi";
 import {
   SiNextdotjs,
-  SiTypescript,
   SiTailwindcss,
   SiReact,
-  SiWebgl,
-  SiSvg,
   SiJavascript,
+  SiNestjs,
+  SiPostgresql,
+  SiLangchain,
+  SiDocker,
+  SiCaddy,
+  SiTerraform,
+  SiGithubactions,
+  SiAmazonwebservices,
+  SiFirebase,
+  SiNodedotjs,
+  SiGraphql,
+  SiApachekafka,
+  SiTimescale,
+  SiAuth0,
+  SiOpenid,
 } from "react-icons/si";
-import { BsEnvelopePaper } from "react-icons/bs";
+
+interface ProjectLink {
+  href: string;
+  label: string;
+  icon: React.ElementType;
+}
 
 const RecentProjects = () => {
   const getTechIcon = (tech: string) => {
     const icons: { [key: string]: React.ReactElement } = {
       "Next.js": <SiNextdotjs className="w-4 h-4" />,
-      TypeScript: <SiTypescript className="w-4 h-4" />,
-      "TailwindCSS": <SiTailwindcss className="w-4 h-4" />,
-      "React Query": <SiReact className="w-4 h-4" />,
-      "NestJS": <SiWebgl className="w-4 h-4" />,
-      "PostgreSQL": <SiSvg className="w-4 h-4" />,
-      "Redis": <BsEnvelopePaper className="w-4 h-4" />,
-      "LangChain": <HiOutlineSparkles className="w-4 h-4" />,
-      "Zustand": <SiReact className="w-4 h-4" />,
-      "Deepstream": <SiWebgl className="w-4 h-4" />,
+      TailwindCSS: <SiTailwindcss className="w-4 h-4" />,
+      Zustand: <SiReact className="w-4 h-4" />,
+      React: <SiReact className="w-4 h-4" />,
+      "React Native": <SiReact className="w-4 h-4" />,
+      NestJS: <SiNestjs className="w-4 h-4" />,
+      "PostgreSQL (RDS)": <SiPostgresql className="w-4 h-4" />,
+      PostgreSQL: <SiPostgresql className="w-4 h-4" />,
+      LangChain: <SiLangchain className="w-4 h-4" />,
+      Docker: <SiDocker className="w-4 h-4" />,
+      Caddy: <SiCaddy className="w-4 h-4" />,
+      Terraform: <SiTerraform className="w-4 h-4" />,
+      "GitHub Actions": <SiGithubactions className="w-4 h-4" />,
+      AWS: <SiAmazonwebservices className="w-4 h-4" />,
+      Firebase: <SiFirebase className="w-4 h-4" />,
+      "Node.js": <SiNodedotjs className="w-4 h-4" />,
+      GraphQL: <SiGraphql className="w-4 h-4" />,
+      Kafka: <SiApachekafka className="w-4 h-4" />,
+      TimescaleDB: <SiTimescale className="w-4 h-4" />,
+      Deepstream: <HiOutlineSparkles className="w-4 h-4" />,
+      "OAuth 2.0": <SiAuth0 className="w-4 h-4" />,
+      "OpenID Connect": <SiOpenid className="w-4 h-4" />,
     };
     return icons[tech] || <SiJavascript className="w-4 h-4" />;
   };
@@ -41,61 +71,77 @@ const RecentProjects = () => {
     return { start, end, isPresent };
   };
 
-  const projects = [
+  const projects: {
+    title: string;
+    role: string;
+    duration: string;
+    description: string;
+    technologies: string[];
+    links: ProjectLink[];
+    gradient: string;
+  }[] = [
     {
       title: "Dashgen",
-      role: "Founder & Lead Developer",
-      duration: "01/2023 - Present",
+      role: "Founder",
+      duration: "09/2024 - Present",
       description:
-        "Currently building a unified platform for multiple AI models including OpenAI, Anthropic, Google Gemini, Mistral, xAI and DeepSeek. The platform provides a seamless way to integrate and manage multiple AI models through a single, user-friendly dashboard.",
+        "A platform to interact with multiple LLMs (OpenAI, Anthropic, Mistral, Groq, Google Gen AI, xAI, DeepSeek) through your own API keys in a single, unified interface. 100+ active users, built and operated solo. Terraform-managed AWS across three environments.",
       technologies: [
+        "NestJS",
+        "PostgreSQL (RDS)",
+        "LangChain",
+        "Docker",
+        "Caddy",
+        "Terraform",
+        "GitHub Actions",
+        "AWS",
         "Next.js",
         "TailwindCSS",
-        "React Query",
         "Zustand",
-        "NestJS",
-        "PostgreSQL",
-        "Redis",
-        "LangChain",
       ],
-      url: "dashgen.in",
+      links: [
+        {
+          href: "https://dashgen.in",
+          label: "Visit Dashgen website",
+          icon: FiExternalLink,
+        },
+        {
+          href: "https://github.com/aryankush25/dashgen-architecture",
+          label: "Read the Dashgen architecture write-up",
+          icon: FiGithub,
+        },
+      ],
       gradient: "from-blue-500/10 to-purple-500/10",
     },
     {
       title: "Glue Identity",
-      role: "Technical Lead",
-      duration: "05/2022 - 12/2022",
+      role: "Technical Lead, Glue Labs",
+      duration: "01/2022 - 01/2025",
       description:
-        "Built an identity management platform with features like authentication, RBAC, and OAuth 2.0, designed for scalability and security. The platform provides enterprise-grade identity and access management solutions while maintaining high performance and user experience.",
-      technologies: [
-        "Next.js", 
-        "NestJS", 
-        "TailwindCSS", 
-        "React Query", 
-        "PostgreSQL", 
-        "Redis",
-        "Ory Kratos",
-        "Ory Hydra"
-      ],
-      url: "id.glue.is",
+        "Identity management platform and OAuth 2.0 provider. Moved a non-standard in-house implementation onto Ory Kratos and Ory Hydra (OAuth 2.0 and OpenID Connect).",
+      technologies: ["Ory Kratos", "Ory Hydra", "OAuth 2.0", "OpenID Connect"],
+      links: [],
       gradient: "from-green-500/10 to-teal-500/10",
     },
     {
       title: "FIFO",
-      role: "Technical Lead",
-      duration: "10/2021 - 04/2022",
+      role: "Technical Lead, Glue Labs",
+      duration: "10/2021 - 01/2025",
       description:
-        "Built a modern blogging platform with React and Node.js, featuring rich text editing and responsive design. The platform combines modern web technologies to create an engaging and performant user experience while maintaining robust backend systems.",
+        "Real-time voice app that pivoted into a content publishing platform. React Native + Firebase, then React, Node.js, GraphQL and PostgreSQL; Deepstream pub/sub for real-time rooms; NestJS events service with Kafka and TimescaleDB.",
       technologies: [
-        "Next.js", 
-        "NestJS", 
-        "TailwindCSS", 
-        "React Query", 
-        "PostgreSQL", 
-        "Redis", 
-        "Deepstream"
+        "React Native",
+        "Firebase",
+        "React",
+        "Node.js",
+        "GraphQL",
+        "PostgreSQL",
+        "Deepstream",
+        "NestJS",
+        "Kafka",
+        "TimescaleDB",
       ],
-      url: "fifo.im",
+      links: [],
       gradient: "from-purple-500/10 to-pink-500/10",
     },
   ];
@@ -147,7 +193,7 @@ const RecentProjects = () => {
             Featured Work
           </h3>
         </div>
-        <motion.h2 className="font-bold text-5xl md:text-[120px] leading-none">
+        <motion.h2 className="font-bold text-5xl md:text-8xl lg:text-7xl xl:text-[120px] leading-none">
           <span className="text-white">RECENT</span>{" "}
           <span className="text-gray-600">PROJECTS</span>
         </motion.h2>
@@ -202,28 +248,36 @@ const RecentProjects = () => {
                     </div>
                   </div>
                 </div>
-                <motion.a
-                  href={`https://${project.url}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={`Visit ${project.title} website`}
-                  aria-label={`Visit ${project.title} website`}
-                  className="md:flex hidden hover:bg-white/5 p-2 rounded-full text-gray-400 hover:text-white transition-colors shrink-0"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FiExternalLink className="w-5 md:w-6 h-5 md:h-6" />
-                </motion.a>
-                <a
-                  href={`https://${project.url}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={`Visit ${project.title} website`}
-                  aria-label={`Visit ${project.title} website`}
-                  className="flex md:hidden p-2 rounded-full text-gray-400 shrink-0"
-                >
-                  <FiExternalLink className="w-5 h-5" />
-                </a>
+                {project.links.length > 0 && (
+                  <div className="flex shrink-0">
+                    {project.links.map((link) => (
+                      <React.Fragment key={link.href}>
+                        <motion.a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title={link.label}
+                          aria-label={link.label}
+                          className="md:flex hidden hover:bg-white/5 p-2 rounded-full text-gray-400 hover:text-white transition-colors shrink-0"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <link.icon className="w-5 md:w-6 h-5 md:h-6" />
+                        </motion.a>
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title={link.label}
+                          aria-label={link.label}
+                          className="flex md:hidden p-2 rounded-full text-gray-400 shrink-0"
+                        >
+                          <link.icon className="w-5 h-5" />
+                        </a>
+                      </React.Fragment>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <p className="text-gray-300 text-sm md:text-base leading-relaxed">
