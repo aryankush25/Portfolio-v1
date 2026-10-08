@@ -8,47 +8,40 @@ const Experience = () => {
       company: "Thoughtworks",
       role: "Senior Software Engineer",
       period: "02/2025 - Present",
+      summary:
+        "Embedded with Apple's engineering team, building and evolving its shipping exception management platform.",
       responsibilities: [
-        "Thoughtworks is a global leader in tech, driving innovation through strategic design and engineering",
-        "Increased application performance by 40% through optimizing backend services and algorithms",
-        "Oversaw development of 15 microservices, each handling over 200,000 transactions/month",
-        "Drove down bugs by 30% in production releases by automating end-to-end testing protocols",
+        "Lead a team of 6 engineers delivering a shipping exception management platform, owning delivery across React frontends and Node.js services.",
+        "Built the MVP and proofs of concept, then owned delivery across multiple phases through production launch; the work received formal commendation from Apple product leadership.",
+        "Designed a questionnaire-driven workflow engine that replaced manual exception triage.",
+        "Replaced HTTP polling with WebSockets, eliminating ~1MB of redundant traffic every 3 seconds.",
+        "Primary technical contact for client stakeholders across product, backend and QA; run architecture reviews and set the team's TypeScript, testing and state-management standards.",
       ],
     },
     {
       company: "Glue Labs",
       role: "Technical Lead",
-      period: "01/2022 - 01/2025",
+      period: "10/2021 - 01/2025",
+      summary:
+        "Led product engineering end to end across Glue Labs' web, mobile and identity products, from idea through design, build, QA and release.",
       responsibilities: [
-        "Led product development at Glue Labs, from conceptualization to scaling, for products like FIFO.im, Glue, xG, and Glue Identity",
-        "Designed user-centric UX flows and architected repositories using best practices to ensure scalability and performance",
-        "Conducted code reviews to improve quality, security, and compliance with standards",
-        "Streamlined workflows through detailed documentation, enhancing onboarding and collaboration",
-        "Scaled the team from 8 to 40+ through strategic hiring and mentoring, while developing an Intern Training Module and training 30+ interns in core technologies like React, Flutter, and Node.js",
-      ],
-    },
-    {
-      company: "Glue Labs",
-      role: "Senior Software Engineer",
-      period: "10/2021 - 01/2022",
-      responsibilities: [
-        "Built a Voice Calling App using React Native, Firebase, and Agora, enabling users to create/join voice chat rooms",
-        "Spearheaded development of FIFO.im and Glue Mobile App from scratch using React, Node.js, and Flutter, delivering scalable and innovative solutions",
-        "Led cross-functional teams, designed UX flows, and defined product roadmaps to ensure timely delivery and user satisfaction",
-        "Refactored codebases with TypeScript and ESLint, improving code quality, security, and maintainability",
-        "Streamlined developer workflows through comprehensive documentation for seamless collaboration",
+        "Led a cross-functional team of developers, QA and DevOps, growing engineering from 8 to 20+ through hiring; trained and mentored 10+ interns across React, React Native and Flutter.",
+        "Owned engineering across FIFO, Glue, Glue Mobile, Glue Identity and xG, taking products from idea to production and shaping features with the designer, CEO and customers.",
+        "Ran scrum as scrum master: sprint planning, stand-ups and code review, and resolved disagreements across development, design, QA and product.",
+        "Owned the release flow from dev through QA and UAT to production, including the branching strategy, working with the DevOps engineer on deployment pipelines.",
       ],
     },
     {
       company: "GeekyAnts",
       role: "Software Development Engineer",
       period: "02/2019 - 10/2021",
+      summary:
+        "Full-stack engineer delivering web and mobile products for clients, while contributing to hiring and mentoring.",
       responsibilities: [
-        "Worked on 6+ client projects as a full-stack developer using technologies like React, React Native, Svelte, Next.js, Node.js, Flutter, and GraphQL",
-        "Delivered high-quality features on time across multiple projects, ensuring performance and client satisfaction",
-        "Experienced with state management tools such as Redux, React Query, Zustand, SWR, Flutter Bloc, and Riverpod",
-        "Conducted 40+ technical interviews for GeekyAnts and mentored 3-4 interns on best practices and code quality",
-        "Delivered a Tech Talk on voice calling in React Native with Agora",
+        "Delivered client products across web and mobile, including Sortly, Airops, Torii Homes, Acrobody and Hotcoldbags.",
+        "Conducted 40+ technical interviews, contributing to 10 successful hires.",
+        "Trained and mentored 4 junior developers, and code-reviewed and mentored the team building FWD's authentication service.",
+        "Spoke at the React Native & Flutter Bangalore meetup (Nov 2020) on building real-time voice chat in React Native with Agora, and gave a tech talk on Apollo Client for GraphQL APIs.",
       ],
     },
   ];
@@ -88,7 +81,7 @@ const Experience = () => {
             Career Journey
           </h3>
         </div>
-        <motion.h2 className="font-bold text-4xl md:text-[90px] leading-none">
+        <motion.h2 className="font-bold text-4xl md:text-8xl lg:text-7xl xl:text-[90px] leading-none">
           <span className="text-white">WORK</span>{" "}
           <span className="text-gray-600">EXPERIENCE</span>
         </motion.h2>

@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FiArrowRight, FiLayers } from "react-icons/fi";
-import { MdOutlineChat } from "react-icons/md";
+import { FiArrowRight, FiGithub, FiLayers } from "react-icons/fi";
 
 import cicle from "../assets/svg/circle1.svg";
 import waves from "../assets/svg/waves1.svg";
@@ -54,7 +53,7 @@ const StatItem = ({ number, text, delay }: StatItemProps) => (
     className="flex flex-col gap-2"
   >
     <motion.h2
-      className="font-bold text-5xl md:text-8xl"
+      className="font-bold text-5xl whitespace-nowrap"
       initial={{ scale: 0.5, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: 0.7 + delay, duration: 0.5 }}
@@ -67,24 +66,24 @@ const StatItem = ({ number, text, delay }: StatItemProps) => (
 
 const Stats = () => {
   const stats = [
-    { number: "6+", text: "YEARS OF EXPERIENCE" },
-    { number: "25+", text: "PROJECTS COMPLETED" },
-    { number: "10+", text: "TECH STACK EXPERTISE" },
+    { number: "Nearly 8", text: "YEARS BUILDING SOFTWARE" },
+    { number: "20+", text: "ENGINEERS ON THE TEAM I GREW AT GLUE LABS" },
+    { number: "100+", text: "DASHGEN ACTIVE USERS" },
   ];
 
   const projects = [
     {
       src: cicle,
       icon: <FiLayers className="w-8 md:w-10 h-8 md:h-10" color="white" />,
-      title: "DASHGEN - AI MODELS PLATFORM",
+      title: "DASHGEN - MULTI-PROVIDER LLM PLATFORM",
       link: "https://dashgen.in",
       isDark: true,
     },
     {
       src: waves,
-      icon: <MdOutlineChat className="w-8 md:w-10 h-8 md:h-10" color="black" />,
-      title: "GLUE IDENTITY - AUTH PLATFORM",
-      link: "https://id.glue.is",
+      icon: <FiGithub className="w-8 md:w-10 h-8 md:h-10" color="black" />,
+      title: "DASHGEN - ARCHITECTURE WRITE-UP",
+      link: "https://github.com/aryankush25/dashgen-architecture",
       isDark: false,
     },
   ];
@@ -98,19 +97,29 @@ const Stats = () => {
         animate="animate"
       >
         <motion.div variants={variants.fadeInUp} custom={0}>
-          <motion.h2 className="font-bold text-5xl md:text-9xl leading-tight">
+          <motion.h2 className="font-bold text-5xl md:text-8xl lg:text-7xl xl:text-8xl leading-tight">
             SENIOR SOFTWARE <span className="text-gray-600">ENGINEER</span>
           </motion.h2>
-          <motion.h4 className="mt-6 md:mt-10 max-w-3xl text-gray-300 text-lg md:text-2xl">
-            Specializing in building scalable and innovative solutions with
-            modern web technologies. Currently building Dashgen — a unified
-            platform for multiple AI models.
+          <motion.p className="mt-4 md:mt-6 font-medium text-gray-400 text-lg md:text-2xl">
+            Senior Software Engineer | Technical Lead | Backend &{" "}
+            <span className="whitespace-nowrap">Full-Stack</span>
+          </motion.p>
+          <motion.h4 className="mt-6 md:mt-10 max-w-3xl text-gray-300 text-lg md:text-xl leading-relaxed">
+            Senior Software Engineer and Technical Lead with nearly 8 years
+            building backend and full-stack systems in Node.js and TypeScript,
+            with experience leading teams from small squads to 20+ engineers.
+            Comfortable owning a system end to end, from API design and data
+            modelling through infrastructure as code, CI/CD and production.
+            Currently leading a team at Thoughtworks on a logistics platform for
+            Apple. Previously Technical Lead at Glue Labs, taking four products
+            from zero to production. Also built and operate Dashgen, a
+            multi-provider LLM platform, solo.
           </motion.h4>
         </motion.div>
       </motion.div>
 
       <motion.div
-        className="gap-8 grid grid-cols-1 md:grid-cols-3"
+        className="gap-6 md:gap-4 xl:gap-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3"
         variants={variants.staggerContainer}
         initial="initial"
         animate="animate"
@@ -126,7 +135,7 @@ const Stats = () => {
       </motion.div>
 
       <motion.div
-        className="gap-8 grid grid-cols-1 md:grid-cols-2"
+        className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"
         variants={variants.staggerContainer}
         initial="initial"
         animate="animate"

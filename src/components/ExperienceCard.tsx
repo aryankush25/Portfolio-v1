@@ -11,6 +11,7 @@ interface ExperienceCardProps {
   company: string;
   role: string;
   period: string;
+  summary?: string;
   responsibilities: string[];
 }
 
@@ -18,6 +19,7 @@ const ExperienceCard = ({
   company,
   role,
   period,
+  summary,
   responsibilities,
 }: ExperienceCardProps) => {
   const formatPeriod = (period: string) => {
@@ -65,6 +67,12 @@ const ExperienceCard = ({
             </p>
           </div>
         </div>
+
+        {summary && (
+          <p className="text-gray-400 text-sm md:text-lg leading-relaxed">
+            {summary}
+          </p>
+        )}
       </div>
 
       <ul className="relative space-y-3 md:space-y-4">

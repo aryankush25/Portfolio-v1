@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
-  title: "Contact | Aryan Agarwal",
+  title: "Contact",
   description: "Contact Aryan Agarwal",
 };
 

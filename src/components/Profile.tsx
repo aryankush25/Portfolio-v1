@@ -63,7 +63,7 @@ function MobileProfile() {
   return (
     <motion.div
       id="profile"
-      className="flex flex-col md:hidden px-4 w-full"
+      className="flex flex-col lg:hidden px-4 w-full"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -114,8 +114,7 @@ function MobileProfile() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            Senior Software Engineer at Thoughtworks building innovative
-            software solutions
+            Senior Software Engineer at Thoughtworks
           </motion.h4>
         </motion.div>
 
@@ -200,7 +199,7 @@ export default function Profile() {
       <MobileProfile />
       <motion.div
         ref={profileRef}
-        className="md:block top-32 fixed hidden bg-gradient-to-br from-gray-900 to-black rounded-3xl w-[400px] h-[680px] overflow-hidden"
+        className="lg:block top-32 fixed hidden bg-gradient-to-br from-gray-900 to-black rounded-3xl w-[400px] h-[680px] overflow-hidden"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -257,8 +256,7 @@ export default function Profile() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
             >
-              Software Development Engineer specializing in building scalable
-              and innovative solutions.
+              Senior Software Engineer at Thoughtworks
             </motion.p>
           </motion.div>
 

@@ -72,11 +72,7 @@ export default function ContactPage() {
 
             <div className="space-y-4 border-zinc-800/50 bg-zinc-900/50 p-6 border rounded-2xl">
               <h3 className="font-semibold text-white text-xl">Location</h3>
-              <p className="text-zinc-400 leading-relaxed">
-                Based in India
-                <br />
-                Available for remote work worldwide
-              </p>
+              <p className="text-zinc-400 leading-relaxed">Based in India</p>
             </div>
           </aside>
         </div>

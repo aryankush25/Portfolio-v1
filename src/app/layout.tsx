@@ -29,7 +29,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Aryan Agarwal",
-              url: "https://v1.aryankush25.com/",
+              url: "https://aryankush25.com",
               image: "/images/Aryan_new.JPG",
               sameAs: [
                 "https://github.com/aryankush25",
@@ -38,7 +38,7 @@ export default function RootLayout({
               ],
               jobTitle: "Senior Software Engineer",
               description:
-                "Senior Software Engineer specializing in Node.js, NestJS, Express.js, React, Next.js, and modern web technologies. Experienced in building scalable and innovative solutions with 6+ years of experience in software development.",
+                "Aryan Agarwal is a Senior Software Engineer and Technical Lead with nearly 8 years building backend and full-stack systems in Node.js and TypeScript.",
               knowsAbout: [
                 "React",
                 "Next.js",
@@ -47,7 +47,6 @@ export default function RootLayout({
                 "Express.js",
                 "Flutter",
                 "React Native",
-                "Svelte",
                 "TailwindCSS",
                 "PostgreSQL",
                 "Redis",
